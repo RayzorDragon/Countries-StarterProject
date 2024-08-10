@@ -7,20 +7,31 @@
 
 import SwiftUI
 
-struct CountriesListView: View {
+struct CountriesListView <Model>: View where Model:CountriesListViewModelInterface {
+    
+    @StateObject private var viewModel: Model
+    init (viewModel: Model) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        ScrollView {
+            LazyVGrid(columns: [GridItem(.flexible(minimum: 100.0, maximum: UIScreen.main.bounds.size.width))]) {
+                ForEach(viewModel.filteredCountryList) { country in
+                    CountryCellView(viewModel: viewModel, country: country)
+                }
+            }
         }
         .padding()
+        .onAppear {
+            viewModel.fetchCountryList()
+        }
+        .searchable(text: $viewModel.searchableText)
     }
 }
 
 struct CountriesListView_Previews: PreviewProvider {
     static var previews: some View {
-        CountriesListView()
+        CountriesListView(viewModel: MockCountriesListViewModel(countriesFetcher: CountryAPI()))
     }
 }

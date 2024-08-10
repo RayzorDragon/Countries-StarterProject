@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct CountriesAPIApp: App {
+    let viewModel = CountryListViewModel(countriesFetcher: CountryAPI())
     var body: some Scene {
         WindowGroup {
-            CountriesListView()
+            NavigationStack {
+                CountriesListView(viewModel: viewModel)
+            }
         }
     }
 }

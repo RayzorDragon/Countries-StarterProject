@@ -18,7 +18,17 @@ struct CountriesListView <Model>: View where Model:CountriesListViewModelInterfa
         ScrollView {
             LazyVGrid(columns: [GridItem(.flexible(minimum: 100.0, maximum: UIScreen.main.bounds.size.width))]) {
                 ForEach(viewModel.filteredCountryList) { country in
-                    CountryCellView(viewModel: viewModel, country: country)
+                    NavigationLink {
+                        CountryDetailView(
+                            viewModel: CountryDetailViewModel(
+                                country: country,
+                                countriesFetcher: CountryAPI()))
+                    } label: {
+                        CountryCellView(viewModel: viewModel, country: country)
+                    }
+
+                    
+                    
                 }
             }
         }
@@ -27,6 +37,7 @@ struct CountriesListView <Model>: View where Model:CountriesListViewModelInterfa
             viewModel.fetchCountryList()
         }
         .searchable(text: $viewModel.searchableText)
+        .navigationTitle(Text("Counties"))
     }
 }
 

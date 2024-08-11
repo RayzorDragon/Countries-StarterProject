@@ -13,6 +13,6 @@ CountryListModel(
         common: "Libya",
         official: "State of Libya"),
     capital: ["Tripoli"],
-    flags: CountryFlagModel(
+    flags: ImageSourceModel(
         png: "https://flagcdn.com/w320/ly.png",
         svg: "https://flagcdn.com/ly.svg"))

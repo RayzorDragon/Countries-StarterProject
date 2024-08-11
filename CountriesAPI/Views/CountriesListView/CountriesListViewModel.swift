@@ -76,7 +76,7 @@ extension CountryListViewModel: CountriesListViewModelInterface {
     
     func downloadFlag(_ url: String) {
         countriesFetcher
-            .downloadFlag(url)
+            .downloadImage(url)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] value in
                 switch value {

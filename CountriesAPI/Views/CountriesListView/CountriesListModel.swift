@@ -11,7 +11,7 @@ struct CountryListModel: Codable, Identifiable {
     let id: UUID = UUID()
     var name: CountryNameModel
     var capital: [String]?
-    var flags: CountryFlagModel
+    var flags: ImageSourceModel
     
     func officialName() -> String {
         return name.official ?? ""
@@ -36,7 +36,7 @@ struct CountryNameModel: Codable {
     var official: String?
 }
 
-struct CountryFlagModel: Codable {
+struct ImageSourceModel: Codable {
     var png: String?
     var svg: String?
 }

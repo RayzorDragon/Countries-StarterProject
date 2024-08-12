@@ -53,8 +53,8 @@ struct CountryDetailModel: Codable, Identifiable {
         return currencies ?? [:]
     }
     
-    func pop() -> Int {
-        return population ?? 0
+    func populationString() -> String {
+        return "\(population ?? 0)"
     }
     
     func driverSide() -> String {

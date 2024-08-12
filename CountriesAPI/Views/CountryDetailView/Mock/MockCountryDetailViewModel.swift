@@ -8,6 +8,7 @@
 import Foundation
 
 class MockCountryDetailViewModel: CountryDetailViewModelInterface {
+    
     @Published var countryDetails: CountryDetailModel?
     @Published var flagData: Data?
     @Published var coatOfArmsData: Data?
@@ -24,6 +25,8 @@ class MockCountryDetailViewModel: CountryDetailViewModelInterface {
     func fetchCountryDetails() {}
     func downloadFlag(_ url: String) {}
     func downloadCoatOfArms(_ url: String) {}
+    func listLanguages() -> String { return "" }
+    func listCurrency() -> String { return "" }
     
     
 }

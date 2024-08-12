@@ -11,7 +11,7 @@ import Combine
 protocol CountriesFetchable {
     func fetchCountriesList() -> AnyPublisher<[CountryListModel], APIError>
     func downloadImage(_ url: String) -> AnyPublisher<Data,APIError>
-    func fetchCountryDetails(_ country: CountryListModel) -> AnyPublisher<CountryDetailModel, APIError>
+    func fetchCountryDetails(_ country: CountryListModel) -> AnyPublisher<[CountryDetailModel], APIError>
 }
 
 class CountryAPI {
@@ -71,7 +71,7 @@ extension CountryAPI: CountriesFetchable, Fetchable, Downloadable {
         return downloadData(with: try? self.urlComponentToDownloadImage(url), session: self.session)
     }
     
-    func fetchCountryDetails(_ country: CountryListModel) -> AnyPublisher<CountryDetailModel, APIError> {
+    func fetchCountryDetails(_ country: CountryListModel) -> AnyPublisher<[CountryDetailModel], APIError> {
         return fetch(with: self.urlComponentsForCountryDetails(country: country), session: self.session)
     }
     

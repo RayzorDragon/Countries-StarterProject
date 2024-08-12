@@ -16,6 +16,8 @@ protocol CountryDetailViewModelInterface: ObservableObject {
     func fetchCountryDetails()
     func downloadFlag(_ url: String)
     func downloadCoatOfArms(_ url: String)
+    func listLanguages() -> String
+    func listCurrency() -> String
 }
 
 class CountryDetailViewModel {
@@ -49,7 +51,11 @@ extension CountryDetailViewModel: CountryDetailViewModelInterface {
                     break
                 }
             } receiveValue: { [weak self] detailResponse in
-                self?.countryDetails = detailResponse
+                self?.countryDetails = detailResponse.first
+                guard let details = self?.countryDetails else { return }
+                self?.downloadFlag(details.flagURL())
+                self?.downloadCoatOfArms(details.coatOfArmsURL())
+                
             }
             .store(in: &disposables)
     }
@@ -88,5 +94,36 @@ extension CountryDetailViewModel: CountryDetailViewModelInterface {
             .store(in: &disposables)
     }
     
+    func listLanguages() -> String {
+        guard let languages = countryDetails?.languages else { return "" }
+        var languageString = ""
+        
+        for language in languages.values {
+            if languageString.isEmpty {
+                languageString = language
+            } else {
+                languageString = languageString + ", " + language
+            }
+        }
+        
+        return languageString
+    }
     
+    func listCurrency() -> String {
+        guard let currencies = countryDetails?.currencies else { return "" }
+        var currencyString = ""
+        
+        for currency in currencies {
+            let currencyShort = currency.key
+            guard let currencyName = currency.value.name else { continue }
+            let formatting = currencyShort + " (" + currencyName + ")"
+            if currencyString.isEmpty {
+                currencyString = formatting
+            } else {
+                currencyString = currencyString + ", " + formatting
+            }
+        }
+        
+        return currencyString
+    }
 }

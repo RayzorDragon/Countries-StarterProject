@@ -9,9 +9,9 @@ import Foundation
 import Combine
 
 protocol CountriesFetchable {
-    func fetchCountriesList() -> AnyPublisher<[CountryListModel], APIError>
-    func downloadImage(_ url: String) -> AnyPublisher<Data,APIError>
-    func fetchCountryDetails(_ country: CountryListModel) -> AnyPublisher<[CountryDetailModel], APIError>
+    func fetchCountriesList() -> AnyPublisher<[CountryDetailModel], APIError>
+    func downloadImage(_ sourceModel: ImageSourceModel) -> AnyPublisher<Data,APIError>
+    func fetchCountryDetails(_ country: CountryDetailModel) -> AnyPublisher<[CountryDetailModel], APIError>
 }
 
 class CountryAPI {
@@ -37,8 +37,8 @@ private extension CountryAPI {
         return components
     }
     
-    func urlComponentToDownloadImage(_ url: String) throws -> URLComponents {
-        guard let components = URLComponents(string: url) else {
+    func urlComponentToDownloadImage(_ sourceModel: ImageSourceModel) throws -> URLComponents {
+        guard let components = URLComponents(string: sourceModel.png ?? "") else {
             throw APIError.request(message: "Invalid URL")
         }
         
@@ -51,7 +51,7 @@ private extension CountryAPI {
         static let path = "/v3.1/name"
     }
     
-    func urlComponentsForCountryDetails(country: CountryListModel) -> URLComponents {
+    func urlComponentsForCountryDetails(country: CountryDetailModel) -> URLComponents {
         var components = URLComponents()
         components.scheme = CountryDetailAPIComponent.scheme
         components.host = CountryDetailAPIComponent.host
@@ -63,15 +63,15 @@ private extension CountryAPI {
     
 extension CountryAPI: CountriesFetchable, Fetchable, Downloadable {
     
-    func fetchCountriesList() -> AnyPublisher<[CountryListModel], APIError> {
+    func fetchCountriesList() -> AnyPublisher<[CountryDetailModel], APIError> {
         return fetch(with: self.urlComponentsForCountryList(), session: self.session)
     }
     
-    func downloadImage(_ url: String) -> AnyPublisher<Data, APIError> {
-        return downloadData(with: try? self.urlComponentToDownloadImage(url), session: self.session)
+    func downloadImage(_ sourceModel: ImageSourceModel) -> AnyPublisher<Data, APIError> {
+        return downloadData(with: try? self.urlComponentToDownloadImage(sourceModel), session: self.session)
     }
     
-    func fetchCountryDetails(_ country: CountryListModel) -> AnyPublisher<[CountryDetailModel], APIError> {
+    func fetchCountryDetails(_ country: CountryDetailModel) -> AnyPublisher<[CountryDetailModel], APIError> {
         return fetch(with: self.urlComponentsForCountryDetails(country: country), session: self.session)
     }
     

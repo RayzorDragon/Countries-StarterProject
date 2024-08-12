@@ -66,6 +66,16 @@ struct CountryDetailModel: Codable, Identifiable {
     }
 }
 
+struct CountryNameModel: Codable {
+    var common: String?
+    var official: String?
+}
+
+struct ImageSourceModel: Codable {
+    var png: String?
+    var pngData: Data?
+}
+
 struct CurrencyModel: Codable {
     var name: String?
     var symbol: String?

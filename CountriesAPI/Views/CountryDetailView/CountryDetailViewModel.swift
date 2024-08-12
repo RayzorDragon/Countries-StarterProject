@@ -9,93 +9,62 @@ import Foundation
 import Combine
 
 protocol CountryDetailViewModelInterface: ObservableObject {
-    var countryDetails: CountryDetailModel? { get set }
-    var flagData: Data? { get set }
-    var coatOfArmsData: Data? { get set }
-    init(country: CountryListModel, countriesFetcher: CountriesFetchable)
-    func fetchCountryDetails()
-    func downloadFlag(_ url: String)
-    func downloadCoatOfArms(_ url: String)
+    var countryDetails: CountryDetailModel { get set }
+    init(country: CountryDetailModel, countriesFetcher: CountriesFetchable)
+    func downloadFlag(_ sourceModel: ImageSourceModel)
+    func downloadCoatOfArms(_ sourceModel: ImageSourceModel)
     func listLanguages() -> String
     func listCurrency() -> String
 }
 
 class CountryDetailViewModel {
-    @Published var countryDetails: CountryDetailModel?
-    @Published var flagData: Data?
-    @Published var coatOfArmsData: Data?
-    private let countryList: CountryListModel
+    @Published var countryDetails: CountryDetailModel
     private let countriesFetcher: CountriesFetchable
     private var disposables = Set<AnyCancellable>()
     
-    required init(country: CountryListModel, countriesFetcher: CountriesFetchable) {
-        self.countryList = country
+    required init(country: CountryDetailModel, countriesFetcher: CountriesFetchable) {
         self.countriesFetcher = countriesFetcher
-        self.countryDetails = nil
-        self.flagData = nil
-        self.coatOfArmsData = nil
+        self.countryDetails = country
     }
 }
 
 extension CountryDetailViewModel: CountryDetailViewModelInterface {
-    
-    func fetchCountryDetails() {
+    func downloadFlag(_ sourceModel: ImageSourceModel) {
         countriesFetcher
-            .fetchCountryDetails(self.countryList)
+            .downloadImage(sourceModel)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] value in
                 switch value {
                 case .failure:
-                    self?.countryDetails = nil
-                case .finished:
-                    break
-                }
-            } receiveValue: { [weak self] detailResponse in
-                self?.countryDetails = detailResponse.first
-                guard let details = self?.countryDetails else { return }
-                self?.downloadFlag(details.flagURL())
-                self?.downloadCoatOfArms(details.coatOfArmsURL())
-                
-            }
-            .store(in: &disposables)
-    }
-    
-    func downloadFlag(_ url: String) {
-        countriesFetcher
-            .downloadImage(url)
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] value in
-                switch value {
-                case .failure:
-                    self?.flagData = nil
+                    self?.countryDetails.flags.pngData = nil
                 case .finished:
                     break
                 }
             } receiveValue: { [weak self] imageData in
-                self?.flagData = imageData
+                self?.countryDetails.flags.pngData = imageData
             }
             .store(in: &disposables)
     }
     
-    func downloadCoatOfArms(_ url: String) {
+    func downloadCoatOfArms(_ sourceModel: ImageSourceModel) {
         countriesFetcher
-            .downloadImage(url)
+            .downloadImage(sourceModel)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] value in
                 switch value {
                 case .failure:
-                    self?.coatOfArmsData = nil
+                    self?.countryDetails.coatOfArms.pngData = nil
                 case .finished:
                     break
                 }
             } receiveValue: { [weak self] imageData in
-                self?.coatOfArmsData = imageData
+                self?.countryDetails.coatOfArms.pngData = imageData
             }
             .store(in: &disposables)
     }
     
     func listLanguages() -> String {
-        guard let languages = countryDetails?.languages else { return "" }
+        guard let languages = countryDetails.languages else { return "" }
         var languageString = ""
         
         for language in languages.values {
@@ -110,7 +79,7 @@ extension CountryDetailViewModel: CountryDetailViewModelInterface {
     }
     
     func listCurrency() -> String {
-        guard let currencies = countryDetails?.currencies else { return "" }
+        guard let currencies = countryDetails.currencies else { return "" }
         var currencyString = ""
         
         for currency in currencies {

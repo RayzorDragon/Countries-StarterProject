@@ -9,28 +9,24 @@ import Foundation
 import Combine
 
 protocol CountriesListViewModelInterface: ObservableObject {
-    var countryList: [CountryListModel] { get set }
-    var filteredCountryList: [CountryListModel] { get set }
-    var flagList: [String: Data?] { get set }
+    var countryList: [CountryDetailModel] { get set }
+    var filteredCountryList: [CountryDetailModel] { get set }
     var searchableText: String { get set }
     init(countriesFetcher: CountriesFetchable)
     func fetchCountryList()
-    func downloadFlag(_ url: String)
 }
 
 class CountryListViewModel {
-    @Published var countryList: [CountryListModel]
-    @Published var filteredCountryList: [CountryListModel]
-    @Published var flagList: [String : Data?]
+    @Published var countryList: [CountryDetailModel]
+    @Published var filteredCountryList: [CountryDetailModel]
     @Published var searchableText: String
     private let countriesFetcher: CountriesFetchable
     private var disposables = Set<AnyCancellable>()
     
     required init(countriesFetcher: CountriesFetchable) {
         self.countriesFetcher = countriesFetcher
-        self.countryList = [CountryListModel]()
-        self.filteredCountryList = [CountryListModel]()
-        self.flagList = [String: Data?]()
+        self.countryList = [CountryDetailModel]()
+        self.filteredCountryList = [CountryDetailModel]()
         self.searchableText = ""
         
         $searchableText
@@ -70,23 +66,6 @@ extension CountryListViewModel: CountriesListViewModelInterface {
                 }
             } receiveValue: { [weak self] countriesResponse in
                 self?.countryList = countriesResponse
-            }
-            .store(in: &disposables)
-    }
-    
-    func downloadFlag(_ url: String) {
-        countriesFetcher
-            .downloadImage(url)
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] value in
-                switch value {
-                case .failure:
-                    self?.flagList[url] = nil
-                case .finished:
-                    break
-                }
-            } receiveValue: { [weak self] imageData in
-                self?.flagList[url] = imageData
             }
             .store(in: &disposables)
     }

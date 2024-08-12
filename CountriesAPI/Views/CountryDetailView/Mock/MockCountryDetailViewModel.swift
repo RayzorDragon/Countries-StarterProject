@@ -9,22 +9,14 @@ import Foundation
 
 class MockCountryDetailViewModel: CountryDetailViewModelInterface {
     
-    @Published var countryDetails: CountryDetailModel?
-    @Published var flagData: Data?
-    @Published var coatOfArmsData: Data?
-    private let countryList: CountryListModel
+    @Published var countryDetails: CountryDetailModel
     private let countriesFetcher: CountriesFetchable
-    required init(country: CountryListModel, countriesFetcher: CountriesFetchable) {
-        self.countryList = country
+    required init(country: CountryDetailModel, countriesFetcher: CountriesFetchable) {
         self.countriesFetcher = countriesFetcher
-        self.countryDetails = mock_countryDetailModel_1
-        self.flagData = Data()
-        self.coatOfArmsData = Data()
+        self.countryDetails = country
     }
-    
-    func fetchCountryDetails() {}
-    func downloadFlag(_ url: String) {}
-    func downloadCoatOfArms(_ url: String) {}
+    func downloadFlag(_ sourceModel: ImageSourceModel) {}
+    func downloadCoatOfArms(_ sourceModel: ImageSourceModel) {}
     func listLanguages() -> String { return "" }
     func listCurrency() -> String { return "" }
     

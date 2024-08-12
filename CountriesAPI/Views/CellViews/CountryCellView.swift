@@ -7,41 +7,43 @@
 
 import SwiftUI
 
-struct CountryCellView <Model>: View where Model:CountriesListViewModelInterface {
+struct CountryCellView <Model>: View where Model:CountryCellViewModelInterface {
     
     @StateObject private var viewModel: Model
-    var country: CountryListModel
     
-    init(viewModel: Model, country: CountryListModel) {
+    init(viewModel: Model) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.country = country
     }
     
     var body: some View {
         HStack {
-            Image(uiImage: UIImage(data: (viewModel.flagList[country.flagURL()] ?? Data())!) ?? UIColor.gray.image())
+            Image(uiImage: UIImage(data: (viewModel.country.flags.pngData ?? Data())!) ?? UIColor.gray.image())
                 .resizable()
                 .aspectRatio(contentMode: .fit)
+                .border(.gray, width: 1.0)
                 .frame(width: UIScreen.main.bounds.width/3.0, height: UIScreen.main.bounds.width/4.0)
                 .padding(.trailing, 0.0)
             VStack(alignment: .leading) {
-                Text(country.commonName())
-                    .font(.headline)
-                Text(country.officialName())
-                Text(country.firstCapital())
-                    .font(.callout)
-                    .foregroundStyle(.gray)
+                Text(viewModel.country.commonName())
+                    .font(countryListNameFont())
+                    .foregroundStyle(blackColorCountryListNames())
+                Text(viewModel.country.officialName())
+                    .font(countryListOfficalFont())
+                    .foregroundStyle(blackColorCountryListNames())
+                Text(viewModel.country.firstCapital())
+                    .font(countryListCapitalFont())
+                    .foregroundStyle(grayColorCountryListCapital())
             }
             Spacer()
         }
         .onAppear {
-            if viewModel.flagList[country.flagURL()] == nil {
-                viewModel.downloadFlag(country.flagURL())
+            if viewModel.country.flags.pngData == nil {
+                viewModel.downloadFlag(viewModel.country.flags)
             }
         }
     }
 }
 
 #Preview {
-    CountryCellView(viewModel: MockCountriesListViewModel(countriesFetcher: CountryAPI()), country: mock_countriesListModel_1)
+    CountryCellView(viewModel: MockCountryCellViewModel(country: mock_countryDetailModel_1, countriesFetcher: CountryAPI()))
 }

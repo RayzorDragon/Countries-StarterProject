@@ -31,37 +31,51 @@ struct CountryDetailView <Model>: View where Model:CountryDetailViewModelInterfa
         .padding()
         .frame(width: UIScreen.main.bounds.width)
         .onAppear {
-            viewModel.fetchCountryDetails()
+            if viewModel.countryDetails.flags.pngData == nil {
+                viewModel.downloadFlag(viewModel.countryDetails.flags)
+            }
+            if viewModel.countryDetails.coatOfArms.pngData == nil {
+                viewModel.downloadCoatOfArms(viewModel.countryDetails.coatOfArms)
+            }
+            
+                
         }
-        .navigationTitle(Text(viewModel.countryDetails?.commonName() ?? "Country Name"))
+        .navigationTitle(Text(viewModel.countryDetails.commonName()))
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     @ViewBuilder func flagView() -> some View {
-        Image(uiImage: UIImage(data: (viewModel.flagData ?? Data())!) ?? UIColor.gray.image())
+        Image(uiImage: UIImage(data: (viewModel.countryDetails.flags.pngData ?? Data())!) ?? UIColor.gray.image())
             .resizable()
             .aspectRatio(contentMode: .fit)
+            .border(.gray, width: 1.0)
             .frame(width: UIScreen.main.bounds.width/3.0, height: UIScreen.main.bounds.width/4.0)
             .padding(.trailing, 0.0)
     }
     
     @ViewBuilder func countryNameView() -> some View {
         HStack(spacing: 16.0) {
-            Text(viewModel.countryDetails?.commonName() ?? "")
-            Text(viewModel.countryDetails?.officialName() ?? "")
+            Text(viewModel.countryDetails.commonName())
+                .font(countryDetailCommonNameFont())
+                .foregroundStyle(blackColorCountryDetailsCommonName())
+                .layoutPriority(1.0)
+            Text(viewModel.countryDetails.officialName())
+                .font(countryDetailGenericInfoFont())
+                .foregroundStyle(grayColorCountryDetailsOfficalName())
             
         }
     }
     
     @ViewBuilder func capitalView() -> some View {
-        genericTextView(string1: "Capital", string2: viewModel.countryDetails?.firstCapital() ?? "")
+        genericTextView(string1: "Capital", string2: viewModel.countryDetails.firstCapital())
     }
     
     @ViewBuilder func regionView() -> some View {
-        genericTextView(string1: "Region", string2: viewModel.countryDetails?.areaRegion() ?? "")
+        genericTextView(string1: "Region", string2: viewModel.countryDetails.areaRegion())
     }
     
     @ViewBuilder func subRegionView() -> some View {
-        genericTextView(string1: "Subregion", string2: viewModel.countryDetails?.areaSubregion() ?? "")
+        genericTextView(string1: "Subregion", string2: viewModel.countryDetails.areaSubregion())
     }
     
     @ViewBuilder func languagesView() -> some View {
@@ -73,26 +87,34 @@ struct CountryDetailView <Model>: View where Model:CountryDetailViewModelInterfa
     }
     
     @ViewBuilder func populationView() -> some View {
-        genericTextView(string1: "Population", string2: viewModel.countryDetails?.populationString() ?? "")
+        genericTextView(string1: "Population", string2: viewModel.countryDetails.populationString())
     }
     
     @ViewBuilder func carDriverSideView() -> some View {
-        genericTextView(string1: "Car Driver Side", string2: viewModel.countryDetails?.driverSide() ?? "")
+        genericTextView(string1: "Car Driver Side", string2: viewModel.countryDetails.driverSide())
     }
 
     @ViewBuilder func genericTextView(string1: String, string2: String) -> some View {
-        HStack {
+        HStack(spacing: 4.0) {
             Text(string1)
-            + Text(" - ")
-            + Text(string2)
+                .font(countryDetailGenericTitleFont())
+                .foregroundStyle(grayColorCountryDetailsTitle())
+            Text("-")
+                .font(countryDetailGenericTitleFont())
+                .foregroundStyle(grayColorCountryDetailsTitle())
+            Text(string2)
+                .font(countryDetailGenericInfoFont())
+                .foregroundStyle(grayColorCountryDetailsInfo())
         }
     }
     
     // Coat of Arms
     @ViewBuilder func coatOfArmsView() -> some View {
-        VStack {
+        VStack(alignment: .leading) {
             Text("Coat of Arms")
-            Image(uiImage: UIImage(data: (viewModel.coatOfArmsData ?? Data())!) ?? UIColor.gray.image())
+                .font(countryDetailGenericTitleFont())
+                .foregroundStyle(grayColorCountryDetailsTitle())
+            Image(uiImage: UIImage(data: (viewModel.countryDetails.coatOfArms.pngData ?? Data())!) ?? UIColor.gray.image())
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: UIScreen.main.bounds.width/8.0, height: UIScreen.main.bounds.width/6.0)
@@ -102,5 +124,5 @@ struct CountryDetailView <Model>: View where Model:CountryDetailViewModelInterfa
 }
 
 #Preview {
-    CountryDetailView(viewModel: MockCountryDetailViewModel(country: mock_countriesListModel_1, countriesFetcher: CountryAPI()))
+    CountryDetailView(viewModel: MockCountryDetailViewModel(country: mock_countryDetailModel_1, countriesFetcher: CountryAPI()))
 }

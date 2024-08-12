@@ -24,11 +24,8 @@ struct CountriesListView <Model>: View where Model:CountriesListViewModelInterfa
                                 country: country,
                                 countriesFetcher: CountryAPI()))
                     } label: {
-                        CountryCellView(viewModel: viewModel, country: country)
+                        CountryCellView(viewModel: CountryCellViewModel(country: country, countriesFetcher: CountryAPI()))
                     }
-
-                    
-                    
                 }
             }
         }
@@ -38,6 +35,7 @@ struct CountriesListView <Model>: View where Model:CountriesListViewModelInterfa
         }
         .searchable(text: $viewModel.searchableText)
         .navigationTitle(Text("Counties"))
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

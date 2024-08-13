@@ -34,12 +34,12 @@ extension CountryCellViewModel: CountryCellViewModelInterface {
             .sink { [weak self] value in
                 switch value {
                 case .failure:
-                    self?.country.flags.pngData = nil
+                    self?.country.flags?.pngData = nil
                 case .finished:
                     break
                 }
             } receiveValue: { [weak self] imageData in
-                self?.country.flags.pngData = imageData
+                self?.country.flags?.pngData = imageData
             }
             .store(in: &disposables)
     }

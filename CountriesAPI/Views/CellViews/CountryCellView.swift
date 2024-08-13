@@ -17,7 +17,7 @@ struct CountryCellView <Model>: View where Model:CountryCellViewModelInterface {
     
     var body: some View {
         HStack {
-            Image(uiImage: UIImage(data: (viewModel.country.flags.pngData ?? Data())!) ?? UIColor.gray.image())
+            Image(uiImage: UIImage(data: (viewModel.country.flags?.pngData ?? Data())!) ?? UIColor.gray.image())
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .border(.gray, width: 1.0)
@@ -37,13 +37,13 @@ struct CountryCellView <Model>: View where Model:CountryCellViewModelInterface {
             Spacer()
         }
         .onAppear {
-            if viewModel.country.flags.pngData == nil {
-                viewModel.downloadFlag(viewModel.country.flags)
+            if viewModel.country.flags?.pngData == nil {
+                viewModel.downloadFlag(viewModel.country.flags ?? ImageSourceModel())
             }
         }
     }
 }
 
 #Preview {
-    CountryCellView(viewModel: MockCountryCellViewModel(country: mock_countryDetailModel_1, countriesFetcher: CountryAPI()))
+    CountryCellView(viewModel: MockCountryCellViewModel(country: mock_countryDetailModel_1, countriesFetcher: CountriesAPIManager()))
 }

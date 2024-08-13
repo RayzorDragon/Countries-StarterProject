@@ -31,11 +31,11 @@ struct CountryDetailView <Model>: View where Model:CountryDetailViewModelInterfa
         .padding()
         .frame(width: UIScreen.main.bounds.width)
         .onAppear {
-            if viewModel.countryDetails.flags.pngData == nil {
-                viewModel.downloadFlag(viewModel.countryDetails.flags)
+            if viewModel.countryDetails.flags?.pngData == nil {
+                viewModel.downloadFlag(viewModel.countryDetails.flags ?? ImageSourceModel())
             }
-            if viewModel.countryDetails.coatOfArms.pngData == nil {
-                viewModel.downloadCoatOfArms(viewModel.countryDetails.coatOfArms)
+            if viewModel.countryDetails.coatOfArms?.pngData == nil {
+                viewModel.downloadCoatOfArms(viewModel.countryDetails.coatOfArms ?? ImageSourceModel())
             }
             
                 
@@ -45,7 +45,7 @@ struct CountryDetailView <Model>: View where Model:CountryDetailViewModelInterfa
     }
     
     @ViewBuilder func flagView() -> some View {
-        Image(uiImage: UIImage(data: (viewModel.countryDetails.flags.pngData ?? Data())!) ?? UIColor.gray.image())
+        Image(uiImage: UIImage(data: (viewModel.countryDetails.flags?.pngData ?? Data())!) ?? UIColor.gray.image())
             .resizable()
             .aspectRatio(contentMode: .fit)
             .border(.gray, width: 1.0)
@@ -114,7 +114,7 @@ struct CountryDetailView <Model>: View where Model:CountryDetailViewModelInterfa
             Text("Coat of Arms")
                 .font(countryDetailGenericTitleFont())
                 .foregroundStyle(grayColorCountryDetailsTitle())
-            Image(uiImage: UIImage(data: (viewModel.countryDetails.coatOfArms.pngData ?? Data())!) ?? UIColor.gray.image())
+            Image(uiImage: UIImage(data: (viewModel.countryDetails.coatOfArms?.pngData ?? Data())!) ?? UIColor.gray.image())
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: UIScreen.main.bounds.width/8.0, height: UIScreen.main.bounds.width/6.0)
@@ -124,5 +124,5 @@ struct CountryDetailView <Model>: View where Model:CountryDetailViewModelInterfa
 }
 
 #Preview {
-    CountryDetailView(viewModel: MockCountryDetailViewModel(country: mock_countryDetailModel_1, countriesFetcher: CountryAPI()))
+    CountryDetailView(viewModel: MockCountryDetailViewModel(country: mock_countryDetailModel_1, countriesFetcher: CountriesAPIManager()))
 }

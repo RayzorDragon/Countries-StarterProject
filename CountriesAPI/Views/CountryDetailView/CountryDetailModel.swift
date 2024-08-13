@@ -9,27 +9,27 @@ import Foundation
 
 struct CountryDetailModel: Codable, Identifiable {
     let id: UUID = UUID()
-    var name: CountryNameModel
+    var name: CountryNameModel?
     var capital: [String]?
-    var flags: ImageSourceModel
+    var flags: ImageSourceModel?
     var region: String?
     var subregion: String?
     var languages: [String: String]?
     var currencies: [String: CurrencyModel]?
     var population: Int?
-    var car: CarModel
-    var coatOfArms: ImageSourceModel
+    var car: CarModel?
+    var coatOfArms: ImageSourceModel?
     
     func officialName() -> String {
-        return name.official ?? ""
+        return name?.official ?? ""
     }
     
     func commonName() -> String {
-        return name.common ?? ""
+        return name?.common ?? ""
     }
     
     func flagURL() -> String {
-        return flags.png ?? ""
+        return flags?.png ?? ""
     }
     
     func firstCapital() -> String {
@@ -58,11 +58,11 @@ struct CountryDetailModel: Codable, Identifiable {
     }
     
     func driverSide() -> String {
-        return car.side ?? ""
+        return car?.side ?? ""
     }
     
     func coatOfArmsURL() -> String {
-        return coatOfArms.png ?? ""
+        return coatOfArms?.png ?? ""
     }
 }
 

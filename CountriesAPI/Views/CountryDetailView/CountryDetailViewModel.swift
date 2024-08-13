@@ -36,12 +36,12 @@ extension CountryDetailViewModel: CountryDetailViewModelInterface {
             .sink { [weak self] value in
                 switch value {
                 case .failure:
-                    self?.countryDetails.flags.pngData = nil
+                    self?.countryDetails.flags?.pngData = nil
                 case .finished:
                     break
                 }
             } receiveValue: { [weak self] imageData in
-                self?.countryDetails.flags.pngData = imageData
+                self?.countryDetails.flags?.pngData = imageData
             }
             .store(in: &disposables)
     }
@@ -53,12 +53,12 @@ extension CountryDetailViewModel: CountryDetailViewModelInterface {
             .sink { [weak self] value in
                 switch value {
                 case .failure:
-                    self?.countryDetails.coatOfArms.pngData = nil
+                    self?.countryDetails.coatOfArms?.pngData = nil
                 case .finished:
                     break
                 }
             } receiveValue: { [weak self] imageData in
-                self?.countryDetails.coatOfArms.pngData = imageData
+                self?.countryDetails.coatOfArms?.pngData = imageData
             }
             .store(in: &disposables)
     }

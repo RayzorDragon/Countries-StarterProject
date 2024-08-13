@@ -7,16 +7,20 @@
 
 import Foundation
 import Combine
+import XCTest
 
 protocol MockDownloadable {
-    func mockDownloadData(with urlComponent: URLComponents?, mockResult: Data?, or mockError: APIError?) -> AnyPublisher<Data,APIError>
+    func mockDownloadData(with urlComponent: URLComponents?, mockResult: Data?, or mockError: APIError?, with expectation: XCTestExpectation?) -> AnyPublisher<Data,APIError>
     
 }
 
 extension MockDownloadable {
     
-    func mockDownloadData(with urlComponent: URLComponents?, mockResult: Data?, or mockError: APIError?) -> AnyPublisher<Data,APIError> {
+    func mockDownloadData(with urlComponent: URLComponents?, mockResult: Data?, or mockError: APIError?, with expectation: XCTestExpectation?) -> AnyPublisher<Data,APIError> {
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            expectation?.fulfill()
+        }
         
         guard (urlComponent?.url) != nil else {
             return Fail(error: APIError.request(message: "Invalid URL")).eraseToAnyPublisher()

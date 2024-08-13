@@ -84,6 +84,13 @@ struct ImageSourceModel: Codable {
     var pngData: Data?
 }
 
+extension ImageSourceModel: Equatable {
+    static func == (lhs: ImageSourceModel, rhs: ImageSourceModel) -> Bool {
+        lhs.png == rhs.png &&
+        lhs.pngData == rhs.pngData
+    }
+}
+
 struct CurrencyModel: Codable {
     var name: String?
     var symbol: String?

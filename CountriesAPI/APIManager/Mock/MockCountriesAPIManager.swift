@@ -9,9 +9,9 @@ import Foundation
 import Combine
 
 class MockCountriesAPIManager<T: Decodable> {
-    let mockFetchResult: T? = nil
-    let mockDataResult: Data? = nil
-    let mockError: APIError? = nil
+    var mockFetchResult: T? = nil
+    var mockDataResult: Data? = nil
+    var mockError: APIError? = nil
 }
 
 extension MockCountriesAPIManager: CountriesFetchable, MockFetchable, MockDownloadable, URLManager {

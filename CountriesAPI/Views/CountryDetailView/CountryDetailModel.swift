@@ -66,6 +66,14 @@ struct CountryDetailModel: Codable, Identifiable {
     }
 }
 
+extension CountryDetailModel: Equatable {
+    static func == (lhs: CountryDetailModel, rhs: CountryDetailModel) -> Bool {
+        lhs.id.uuidString == rhs.id.uuidString
+    }
+    
+    
+}
+
 struct CountryNameModel: Codable {
     var common: String?
     var official: String?

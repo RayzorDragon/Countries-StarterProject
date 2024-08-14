@@ -18,24 +18,24 @@ extension MockFetchable {
     
     func mockFetch<T>(with urlComponent: URLComponents?, mockResult: T?, or mockError: APIError?, with expectation: XCTestExpectation?) -> AnyPublisher<T,APIError> where T: Decodable {
         
-        guard (urlComponent?.url) != nil else {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             expectation?.fulfill()
+        }
+        
+        guard (urlComponent?.url) != nil else {
             return Fail(error: APIError.request(message: "Invalid URL")).eraseToAnyPublisher()
         }
         
         if let mockErrorResponse = mockError {
-            expectation?.fulfill()
             return Fail(error: mockErrorResponse)
                 .eraseToAnyPublisher()
         }
         
         guard let mockResponse = mockResult else {
-            expectation?.fulfill()
             return Fail(error: APIError.status(message: "Invalid Status Code"))
                 .eraseToAnyPublisher()
         }
         
-        expectation?.fulfill()
         return Just(mockResponse)
             .setFailureType(to: APIError.self)
             .eraseToAnyPublisher()

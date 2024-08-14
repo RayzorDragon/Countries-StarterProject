@@ -98,3 +98,22 @@ CountryDetailModel(
         side: "right"),
     coatOfArms: ImageSourceModel(
         png: "https://mainfacts.com/media/images/coats_of_arms/us.png"))
+
+let mock_countryDetailModel_5 =
+CountryDetailModel(
+    name: CountryNameModel(
+        common: "United States Minor Outlying Islands",
+        official: "United States Minor Outlying Islands"),
+    capital: ["Washington, D.C."],
+    flags: ImageSourceModel(
+        png: "https://flagcdn.com/w320/us.png"),
+    region: "Americas",
+    subregion: "North America",
+    languages: ["eng" : "English"],
+    currencies: ["USD" : CurrencyModel(
+        name: "United States dollar",
+        symbol: "$")],
+    population: 300,
+    car: CarModel(
+        side: "right"),
+    coatOfArms: nil)

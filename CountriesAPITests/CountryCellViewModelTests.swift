@@ -44,7 +44,7 @@ final class CountryCellViewModelTests: XCTestCase {
         
         
     
-    wait(for: [expectation], timeout: 4)
+        wait(for: [expectation], timeout: 4)
         XCTAssertEqual(expectedValue1, viewModel?.country.flags)
     }
 }

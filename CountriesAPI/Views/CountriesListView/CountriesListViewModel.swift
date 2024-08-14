@@ -16,7 +16,9 @@ protocol CountriesListViewModelInterface: ObservableObject {
     func fetchCountryList()
 }
 
-class CountryListViewModel {
+
+
+class CountriesListViewModel {
     @Published var countryList: [CountryDetailModel]
     @Published var filteredCountryList: [CountryDetailModel]
     @Published var searchableText: String
@@ -52,7 +54,7 @@ class CountryListViewModel {
     }
 }
 
-extension CountryListViewModel: CountriesListViewModelInterface {
+extension CountriesListViewModel: CountriesListViewModelInterface {
     func fetchCountryList() {
         countriesFetcher
             .fetchCountriesList()

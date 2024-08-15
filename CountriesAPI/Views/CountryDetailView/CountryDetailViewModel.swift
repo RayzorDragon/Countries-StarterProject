@@ -86,7 +86,8 @@ extension CountryDetailViewModel: CountryDetailViewModelInterface {
         for currency in currencies {
             let currencyShort = currency.key
             guard let currencyName = currency.value.name else { continue }
-            let formatting = currencyShort + " (" + currencyName + ")"
+            guard let currencySymbol = currency.value.symbol else { continue }
+            let formatting = currencyShort + " (" + currencySymbol + " " + currencyName + ")"
             if currencyString.isEmpty {
                 currencyString = formatting
             } else {

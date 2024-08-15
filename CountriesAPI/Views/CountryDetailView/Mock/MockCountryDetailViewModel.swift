@@ -10,16 +10,23 @@ import Foundation
 class MockCountryDetailViewModel: CountryDetailViewModelInterface {
     
     @Published var countryDetails: CountryDetailModel
+    @Published var bookmarkManager: any BookmarkManagerInterface
+    @Published var bookmarked: Bool
     private let countriesFetcher: CountriesFetchable
-    required init(country: CountryDetailModel, countriesFetcher: CountriesFetchable) {
+    required init(country: CountryDetailModel, countriesFetcher: CountriesFetchable, bookmarkManager: any BookmarkManagerInterface) {
         self.countriesFetcher = countriesFetcher
         self.countryDetails = country
+        self.bookmarkManager = bookmarkManager
+        self.bookmarked = false
     }
     func downloadFlag(_ sourceModel: ImageSourceModel) {}
     func downloadCoatOfArms(_ sourceModel: ImageSourceModel) {}
     func listLanguages() -> String { return "" }
     func listCurrency() -> String { return "" }
     func listTimezones() -> String { return "" }
+    func driveRightSide() -> Bool { return true }
+    func driveLeftSide() -> Bool { return false }
+    func saveButtonTapped() { }
     
     
 }

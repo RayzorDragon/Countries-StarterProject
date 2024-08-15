@@ -10,18 +10,21 @@ import Combine
 
 protocol CountryCellViewModelInterface: ObservableObject {
     var country: CountryDetailModel { get set }
-    init(country: CountryDetailModel, countriesFetcher: CountriesFetchable)
+    var bookmarkManager: any BookmarkManagerInterface { get set }
+    init(country: CountryDetailModel, countriesFetcher: CountriesFetchable, bookmarkManager: any BookmarkManagerInterface)
     func downloadFlag(_ sourceModel: ImageSourceModel)
 }
 
 class CountryCellViewModel {
     @Published var country: CountryDetailModel
+    @Published var bookmarkManager: any BookmarkManagerInterface
     private let countriesFetcher: CountriesFetchable
     private var disposables = Set<AnyCancellable>()
     
-    required init(country: CountryDetailModel, countriesFetcher: CountriesFetchable) {
+    required init(country: CountryDetailModel, countriesFetcher: CountriesFetchable, bookmarkManager: any BookmarkManagerInterface) {
         self.countriesFetcher = countriesFetcher
         self.country = country
+        self.bookmarkManager = bookmarkManager
     }
 }
 

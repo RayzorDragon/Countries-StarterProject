@@ -10,22 +10,31 @@ import Combine
 
 protocol CountryDetailViewModelInterface: ObservableObject {
     var countryDetails: CountryDetailModel { get set }
-    init(country: CountryDetailModel, countriesFetcher: CountriesFetchable)
+    var bookmarkManager: any BookmarkManagerInterface { get set }
+    var bookmarked: Bool { get set }
+    init(country: CountryDetailModel, countriesFetcher: CountriesFetchable, bookmarkManager: any BookmarkManagerInterface)
     func downloadFlag(_ sourceModel: ImageSourceModel)
     func downloadCoatOfArms(_ sourceModel: ImageSourceModel)
     func listLanguages() -> String
     func listCurrency() -> String
     func listTimezones() -> String
+    func driveRightSide() -> Bool
+    func driveLeftSide() -> Bool
+    func saveButtonTapped()
 }
 
 class CountryDetailViewModel {
     @Published var countryDetails: CountryDetailModel
+    @Published var bookmarkManager: any BookmarkManagerInterface
+    @Published var bookmarked: Bool
     private let countriesFetcher: CountriesFetchable
     private var disposables = Set<AnyCancellable>()
     
-    required init(country: CountryDetailModel, countriesFetcher: CountriesFetchable) {
+    required init(country: CountryDetailModel, countriesFetcher: CountriesFetchable, bookmarkManager: any BookmarkManagerInterface) {
         self.countriesFetcher = countriesFetcher
         self.countryDetails = country
+        self.bookmarkManager = bookmarkManager
+        self.bookmarked = bookmarkManager.contains(officalName: country.officialName())
     }
 }
 
@@ -97,6 +106,7 @@ extension CountryDetailViewModel: CountryDetailViewModelInterface {
         
         return currencyString
     }
+    
     func listTimezones() -> String {
         guard let zones = countryDetails.timezones else { return "" }
         var zonesString = ""
@@ -110,5 +120,18 @@ extension CountryDetailViewModel: CountryDetailViewModelInterface {
         }
         
         return zonesString
+    }
+    
+    func driveRightSide() -> Bool {
+        return countryDetails.driverSide().lowercased() == "right"
+    }
+    
+    func driveLeftSide() -> Bool {
+        return countryDetails.driverSide().lowercased() == "left"
+    }
+    
+    func saveButtonTapped() {
+        bookmarkManager.saveOrDeleteEntry(officalName: countryDetails.officialName())
+        bookmarked = bookmarkManager.contains(officalName: countryDetails.officialName())
     }
 }

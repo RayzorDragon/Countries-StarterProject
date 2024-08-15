@@ -57,6 +57,14 @@ struct CountryDetailView <Model>: View where Model:CountryDetailViewModelInterfa
         }
         .navigationTitle(Text(viewModel.countryDetails.commonName()))
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            Button {
+                viewModel.saveButtonTapped()
+            } label: {
+                Image(systemName: viewModel.bookmarked ? "bookmark.fill" : "bookmark")
+            }
+
+        }
     }
     
     @ViewBuilder func flagView() -> some View {
@@ -110,7 +118,24 @@ struct CountryDetailView <Model>: View where Model:CountryDetailViewModelInterfa
     }
     
     @ViewBuilder func carDriverSideView() -> some View {
-        genericTextView(string1: "Car Driver Side", string2: viewModel.countryDetails.driverSide())
+        
+            VStack(alignment: .leading, spacing: 0.0) {
+                Text("Car Driver Side")
+                    .font(countryDetailGenericTitleFont())
+                    .foregroundStyle(grayColorCountryDetailsTitle())
+                HStack {
+                    Text("Left")
+                        .font(countryDetailGenericInfoFont())
+                        .foregroundStyle(grayColorCountryDetailsInfo() )
+                        .opacity(viewModel.driveLeftSide() ? 1.0 : 0.3)
+                    Text(Image(systemName: "car.circle"))
+                        .font(countryDetailGenericInfoFont())
+                        .foregroundStyle(grayColorCountryDetailsTitle())
+                    Text("Right")
+                        .font(countryDetailGenericInfoFont())
+                        .foregroundStyle(grayColorCountryDetailsInfo()).opacity(viewModel.driveRightSide() ? 1.0 : 0.3)
+                }
+            }
     }
     
     @ViewBuilder func timezoneView() -> some View {
@@ -144,5 +169,5 @@ struct CountryDetailView <Model>: View where Model:CountryDetailViewModelInterfa
 }
 
 #Preview {
-    CountryDetailView(viewModel: MockCountryDetailViewModel(country: mock_countryDetailModel_1, countriesFetcher: CountriesAPIManager()))
+    CountryDetailView(viewModel: MockCountryDetailViewModel(country: mock_countryDetailModel_1, countriesFetcher: CountriesAPIManager(), bookmarkManager: BookmarkManager()))
 }

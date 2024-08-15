@@ -52,5 +52,5 @@ struct CountryCellView <Model>: View where Model:CountryCellViewModelInterface {
 }
 
 #Preview {
-    CountryCellView(viewModel: MockCountryCellViewModel(country: mock_countryDetailModel_1, countriesFetcher: CountriesAPIManager()))
+    CountryCellView(viewModel: MockCountryCellViewModel(country: mock_countryDetailModel_1, countriesFetcher: CountriesAPIManager(), bookmarkManager: BookmarkManager()))
 }

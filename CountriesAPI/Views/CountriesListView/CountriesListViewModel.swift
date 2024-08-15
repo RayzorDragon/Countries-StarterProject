@@ -12,7 +12,8 @@ protocol CountriesListViewModelInterface: ObservableObject {
     var countryList: [CountryDetailModel] { get set }
     var filteredCountryList: [CountryDetailModel] { get set }
     var searchableText: String { get set }
-    init(countriesFetcher: CountriesFetchable)
+    var bookmarkManager: any BookmarkManagerInterface { get set }
+    init(countriesFetcher: CountriesFetchable, bookmarkManager: any BookmarkManagerInterface)
     func fetchCountryList()
 }
 
@@ -22,14 +23,16 @@ class CountriesListViewModel {
     @Published var countryList: [CountryDetailModel]
     @Published var filteredCountryList: [CountryDetailModel]
     @Published var searchableText: String
+    @Published var bookmarkManager: any BookmarkManagerInterface
     private let countriesFetcher: CountriesFetchable
     private var disposables = Set<AnyCancellable>()
     
-    required init(countriesFetcher: CountriesFetchable) {
+    required init(countriesFetcher: CountriesFetchable, bookmarkManager: any BookmarkManagerInterface) {
         self.countriesFetcher = countriesFetcher
         self.countryList = [CountryDetailModel]()
         self.filteredCountryList = [CountryDetailModel]()
         self.searchableText = ""
+        self.bookmarkManager = bookmarkManager
         
         $searchableText
             .debounce(for: .milliseconds(800), scheduler: RunLoop.main)

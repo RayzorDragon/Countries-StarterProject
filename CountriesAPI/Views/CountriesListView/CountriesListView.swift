@@ -22,9 +22,9 @@ struct CountriesListView <Model>: View where Model:CountriesListViewModelInterfa
                         CountryDetailView(
                             viewModel: CountryDetailViewModel(
                                 country: country,
-                                countriesFetcher: CountriesAPIManager()))
+                                countriesFetcher: CountriesAPIManager(), bookmarkManager: viewModel.bookmarkManager))
                     } label: {
-                        CountryCellView(viewModel: CountryCellViewModel(country: country, countriesFetcher: CountriesAPIManager()))
+                        CountryCellView(viewModel: CountryCellViewModel(country: country, countriesFetcher: CountriesAPIManager(), bookmarkManager: viewModel.bookmarkManager))
                             .padding(.bottom, 20.0)
                     }
                 }
@@ -42,6 +42,6 @@ struct CountriesListView <Model>: View where Model:CountriesListViewModelInterfa
 
 struct CountriesListView_Previews: PreviewProvider {
     static var previews: some View {
-        CountriesListView(viewModel: MockCountriesListViewModel(countriesFetcher: CountriesAPIManager()))
+        CountriesListView(viewModel: MockCountriesListViewModel(countriesFetcher: CountriesAPIManager(), bookmarkManager: BookmarkManager()))
     }
 }

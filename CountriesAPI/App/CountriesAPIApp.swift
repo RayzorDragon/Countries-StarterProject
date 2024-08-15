@@ -12,8 +12,24 @@ struct CountriesAPIApp: App {
     let viewModel = CountriesListViewModel(countriesFetcher: CountriesAPIManager())
     var body: some Scene {
         WindowGroup {
-            NavigationStack {
-                CountriesListView(viewModel: viewModel)
+            TabView {
+                NavigationStack {
+                    CountriesListView(viewModel: viewModel)
+                }
+                .tabItem {
+                    Text("Search")
+                    Image(systemName: "magnifyingglass")
+                }
+                .tag(0)
+                NavigationStack {
+                    Text("Saved View")
+                }
+                .tabItem {
+                    Text("Saved")
+                    Image(systemName: "star")
+                        .environment(\.symbolVariants, .none)
+                }
+                .tag(1)
             }
         }
     }

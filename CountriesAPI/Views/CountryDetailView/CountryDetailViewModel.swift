@@ -15,6 +15,7 @@ protocol CountryDetailViewModelInterface: ObservableObject {
     func downloadCoatOfArms(_ sourceModel: ImageSourceModel)
     func listLanguages() -> String
     func listCurrency() -> String
+    func listTimezones() -> String
 }
 
 class CountryDetailViewModel {
@@ -71,7 +72,7 @@ extension CountryDetailViewModel: CountryDetailViewModelInterface {
             if languageString.isEmpty {
                 languageString = language
             } else {
-                languageString = languageString + ", " + language
+                languageString = languageString + "\n" + language
             }
         }
         
@@ -94,5 +95,19 @@ extension CountryDetailViewModel: CountryDetailViewModelInterface {
         }
         
         return currencyString
+    }
+    func listTimezones() -> String {
+        guard let zones = countryDetails.timezones else { return "" }
+        var zonesString = ""
+        
+        for zone in zones {
+            if zonesString.isEmpty {
+                zonesString = zone
+            } else {
+                zonesString = zonesString + "\n" + zone
+            }
+        }
+        
+        return zonesString
     }
 }

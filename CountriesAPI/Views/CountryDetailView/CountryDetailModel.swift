@@ -19,6 +19,8 @@ struct CountryDetailModel: Codable, Identifiable {
     var population: Int?
     var car: CarModel?
     var coatOfArms: ImageSourceModel?
+    var area: Float?
+    var timezones: [String]?
     
     func officialName() -> String {
         return name?.official ?? ""
@@ -54,7 +56,15 @@ struct CountryDetailModel: Codable, Identifiable {
     }
     
     func populationString() -> String {
-        return "\(population ?? 0)"
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter.string(from: NSNumber(value: population ?? 0)) ?? "0"
+    }
+    
+    func areaString() -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter.string(from: NSNumber(value: area ?? 0)) ?? "0"
     }
     
     func driverSide() -> String {

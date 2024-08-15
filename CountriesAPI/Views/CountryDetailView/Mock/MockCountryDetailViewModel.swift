@@ -19,6 +19,7 @@ class MockCountryDetailViewModel: CountryDetailViewModelInterface {
     func downloadCoatOfArms(_ sourceModel: ImageSourceModel) {}
     func listLanguages() -> String { return "" }
     func listCurrency() -> String { return "" }
+    func listTimezones() -> String { return "" }
     
     
 }

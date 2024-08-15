@@ -18,14 +18,29 @@ struct CountryDetailView <Model>: View where Model:CountryDetailViewModelInterfa
         VStack(alignment: .leading, spacing: 16.0) {
             flagView()
             countryNameView()
-            capitalView()
-            regionView()
-            subRegionView()
-            languagesView()
-            currenciesView()
-            populationView()
-            carDriverSideView()
-            coatOfArmsView()
+            HStack(alignment: .top) {
+                VStack(alignment: .leading, spacing: 16.0) {
+                    coatOfArmsView()
+                    regionView()
+                    subRegionView()
+                    capitalView()
+                    areaView()
+                    HStack {
+                        Spacer()
+                    }
+                }
+                VStack(alignment: .leading, spacing: 16.0) {
+                    populationView()
+                    languagesView()
+                    carDriverSideView()
+                    currenciesView()
+                    timezoneView()
+                    HStack {
+                        Spacer()
+                    }
+                    
+                }
+            }
             Spacer()
         }
         .padding()
@@ -54,7 +69,7 @@ struct CountryDetailView <Model>: View where Model:CountryDetailViewModelInterfa
     }
     
     @ViewBuilder func countryNameView() -> some View {
-        HStack(spacing: 16.0) {
+        VStack(alignment: .leading) {
             Text(viewModel.countryDetails.commonName())
                 .font(countryDetailCommonNameFont())
                 .foregroundStyle(blackColorCountryDetailsCommonName())
@@ -79,7 +94,7 @@ struct CountryDetailView <Model>: View where Model:CountryDetailViewModelInterfa
     }
     
     @ViewBuilder func languagesView() -> some View {
-        genericTextView(string1: "Languages", string2: viewModel.listLanguages())
+        genericTextView(string1: "Language(s)", string2: viewModel.listLanguages())
     }
     
     @ViewBuilder func currenciesView() -> some View {
@@ -90,16 +105,21 @@ struct CountryDetailView <Model>: View where Model:CountryDetailViewModelInterfa
         genericTextView(string1: "Population", string2: viewModel.countryDetails.populationString())
     }
     
+    @ViewBuilder func areaView() -> some View {
+        genericTextView(string1: "Area", string2: viewModel.countryDetails.areaString())
+    }
+    
     @ViewBuilder func carDriverSideView() -> some View {
         genericTextView(string1: "Car Driver Side", string2: viewModel.countryDetails.driverSide())
     }
+    
+    @ViewBuilder func timezoneView() -> some View {
+        genericTextView(string1: "Timezone(s)", string2: viewModel.listTimezones())
+    }
 
     @ViewBuilder func genericTextView(string1: String, string2: String) -> some View {
-        HStack(spacing: 4.0) {
+        VStack(alignment: .leading, spacing: 0.0) {
             Text(string1)
-                .font(countryDetailGenericTitleFont())
-                .foregroundStyle(grayColorCountryDetailsTitle())
-            Text("-")
                 .font(countryDetailGenericTitleFont())
                 .foregroundStyle(grayColorCountryDetailsTitle())
             Text(string2)
@@ -110,7 +130,7 @@ struct CountryDetailView <Model>: View where Model:CountryDetailViewModelInterfa
     
     // Coat of Arms
     @ViewBuilder func coatOfArmsView() -> some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 0) {
             Text("Coat of Arms")
                 .font(countryDetailGenericTitleFont())
                 .foregroundStyle(grayColorCountryDetailsTitle())

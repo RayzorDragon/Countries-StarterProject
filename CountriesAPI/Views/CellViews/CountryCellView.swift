@@ -16,25 +16,32 @@ struct CountryCellView <Model>: View where Model:CountryCellViewModelInterface {
     }
     
     var body: some View {
-        HStack {
-            Image(uiImage: UIImage(data: (viewModel.country.flags?.pngData ?? Data())!) ?? UIColor.gray.image())
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .border(.gray, width: 1.0)
-                .frame(width: UIScreen.main.bounds.width/3.0, height: UIScreen.main.bounds.width/4.0)
-                .padding(.trailing, 0.0)
-            VStack(alignment: .leading) {
-                Text(viewModel.country.commonName())
-                    .font(countryListNameFont())
-                    .foregroundStyle(blackColorCountryListNames())
-                Text(viewModel.country.officialName())
-                    .font(countryListOfficalFont())
-                    .foregroundStyle(blackColorCountryListNames())
-                Text(viewModel.country.firstCapital())
-                    .font(countryListCapitalFont())
-                    .foregroundStyle(grayColorCountryListCapital())
+        ZStack {
+            RoundedRectangle(cornerRadius: 15)
+                .foregroundStyle(Color.white)
+                .shadow(color: Color.gray, radius: 3, x:0, y:2)
+            HStack {
+                Image(uiImage: UIImage(data: (viewModel.country.flags?.pngData ?? Data())!) ?? UIColor.gray.image())
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .border(.gray, width: 1.0)
+                    .frame(width: UIScreen.main.bounds.width/3.0, height: UIScreen.main.bounds.width/4.0)
+                    .padding(.trailing, 10.0)
+                    .padding(.leading, 10.0)
+                VStack(alignment: .leading) {
+                    Text(viewModel.country.commonName())
+                        .font(countryListNameFont())
+                        .foregroundStyle(blackColorCountryListNames())
+                    Text(viewModel.country.officialName())
+                        .font(countryListOfficalFont())
+                        .foregroundStyle(blackColorCountryListNames())
+                    Text(viewModel.country.firstCapital())
+                        .font(countryListCapitalFont())
+                        .foregroundStyle(grayColorCountryListCapital())
+                }
+                Spacer()
             }
-            Spacer()
+            
         }
         .onAppear {
             if viewModel.country.flags?.pngData == nil {

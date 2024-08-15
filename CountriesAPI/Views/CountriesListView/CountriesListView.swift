@@ -25,6 +25,7 @@ struct CountriesListView <Model>: View where Model:CountriesListViewModelInterfa
                                 countriesFetcher: CountriesAPIManager()))
                     } label: {
                         CountryCellView(viewModel: CountryCellViewModel(country: country, countriesFetcher: CountriesAPIManager()))
+                            .padding(.bottom, 20.0)
                     }
                 }
             }

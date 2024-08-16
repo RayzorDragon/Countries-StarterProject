@@ -9,8 +9,6 @@ import Foundation
 
 protocol BookmarkManagerInterface: ObservableObject {
     var bookmarkedCountries: [String] { get set }
-    func loadBookmarks()
-    func saveBookmarks()
     func saveOrDeleteEntry(officalName: String)
     func contains(officalName: String) -> Bool
 }
@@ -25,12 +23,12 @@ class BookmarkManager {
 }
 
 extension BookmarkManager: BookmarkManagerInterface {
-    func loadBookmarks() {
+    private func loadBookmarks() {
         let defaults = UserDefaults.standard
         bookmarkedCountries = defaults.stringArray(forKey: savedDataName) ?? [String]()
     }
     
-    func saveBookmarks() {
+    private func saveBookmarks() {
         let defaults = UserDefaults.standard
         defaults.set(bookmarkedCountries, forKey: savedDataName)
     }
@@ -57,6 +55,14 @@ extension BookmarkManager: BookmarkManagerInterface {
     
     func contains(officalName: String) -> Bool {
         return bookmarkedCountries.contains { $0 == officalName  }
+    }
+    
+    // this function exists for testing only. There is no use case in the app proper that would require a reset function.
+    // no one should be using this in app
+    // TODO: Make a Mock Bookmark Manager and let it have this
+    func resetBookmarks() {
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: savedDataName)
     }
     
     

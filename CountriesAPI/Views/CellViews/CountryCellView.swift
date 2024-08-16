@@ -44,7 +44,7 @@ struct CountryCellView <Model>: View where Model:CountryCellViewModelInterface {
             VStack {
                 HStack(alignment: .top) {
                     Spacer()
-                    if viewModel.showBookmark && viewModel.displayBookmark() {
+                    if viewModel.displayBookmark() {
                         Image(systemName: "bookmark.fill")
                             .padding(.top, 16.0)
                             .padding(.trailing, 16.0)

@@ -52,6 +52,6 @@ extension CountryCellViewModel: CountryCellViewModelInterface {
     }
     
     func displayBookmark() -> Bool {
-        return bookmarkManager.contains(officalName: country.officialName())
+        return showBookmark && bookmarkManager.contains(officalName: country.officialName())
     }
 }

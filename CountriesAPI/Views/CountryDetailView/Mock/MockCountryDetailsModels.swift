@@ -24,7 +24,9 @@ CountryDetailModel(
     population: 59554023,
     car: CarModel(side: "right"),
     coatOfArms: ImageSourceModel(
-        png: "https://mainfacts.com/media/images/coats_of_arms/it.png"))
+        png: "https://mainfacts.com/media/images/coats_of_arms/it.png"),
+    area: 301336,
+timezones: ["UTC+01:00"])
 
 let mock_countryDetailModel_2 =
 CountryDetailModel(
@@ -45,7 +47,9 @@ CountryDetailModel(
     car: CarModel(
         side: "left"),
     coatOfArms: ImageSourceModel(
-        png: "https://mainfacts.com/media/images/coats_of_arms/lk.png"))
+        png: "https://mainfacts.com/media/images/coats_of_arms/lk.png"),
+    area: 65610,
+    timezones: ["UTC+05:30"])
 
 let mock_countryDetailModel_3 =
 CountryDetailModel(
@@ -77,7 +81,9 @@ CountryDetailModel(
     car: CarModel(
         side: "left"),
     coatOfArms: ImageSourceModel(
-        png: "https://mainfacts.com/media/images/coats_of_arms/za.png"))
+        png: "https://mainfacts.com/media/images/coats_of_arms/za.png"),
+    area: 1221037,
+    timezones: ["UTC+02:00"])
 
 let mock_countryDetailModel_4 =
 CountryDetailModel(
@@ -97,7 +103,9 @@ CountryDetailModel(
     car: CarModel(
         side: "right"),
     coatOfArms: ImageSourceModel(
-        png: "https://mainfacts.com/media/images/coats_of_arms/us.png"))
+        png: "https://mainfacts.com/media/images/coats_of_arms/us.png"),
+    area: 9372610,
+    timezones: ["UTC-12:00", "UTC-11:00", "UTC-10:00", "UTC-09:00", "UTC-08:00", "UTC-07:00", "UTC-06:00", "UTC-05:00", "UTC-04:00", "UTC+10:00", "UTC+12:00"])
 
 let mock_countryDetailModel_5 =
 CountryDetailModel(
@@ -116,4 +124,6 @@ CountryDetailModel(
     population: 300,
     car: CarModel(
         side: "right"),
-    coatOfArms: nil)
+    coatOfArms: nil,
+    area: 34.2,
+    timezones: ["UTC-11:00", "UTC-10:00", "UTC+12:00"])

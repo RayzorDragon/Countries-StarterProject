@@ -12,18 +12,22 @@ import Combine
 final class CountryDetailViewModelTests: XCTestCase {
     
     var APIFetcher: MockCountriesAPIManager<[CountryDetailModel]>?
+    var bookmarkManager: BookmarkManager?
     var viewModel: CountryDetailViewModel?
     private var disposables = Set<AnyCancellable>()
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         APIFetcher = MockCountriesAPIManager()
-        viewModel = CountryDetailViewModel(country: mock_countryDetailModel_3, countriesFetcher: APIFetcher!)
+        bookmarkManager = BookmarkManager()
+        viewModel = CountryDetailViewModel(country: mock_countryDetailModel_3, countriesFetcher: APIFetcher!, bookmarkManager: bookmarkManager!)
     }
     
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         APIFetcher = nil
+        bookmarkManager?.resetBookmarks()
+        bookmarkManager = nil
         viewModel = nil
     }
     
@@ -80,7 +84,7 @@ final class CountryDetailViewModelTests: XCTestCase {
         XCTAssertFalse(returnedValue.isEmpty)
         
         // split returned values by expected seperator
-        let returnedArray = returnedValue.components(separatedBy: ", ")
+        let returnedArray = returnedValue.components(separatedBy: "\n")
         
         // same counts
         XCTAssertEqual(returnedArray.count, expectedValue?.count)
@@ -101,9 +105,45 @@ final class CountryDetailViewModelTests: XCTestCase {
         let expectedData = viewModel?.countryDetails.currencies?.first
         let expectedKey = expectedData?.key
         let expectedName = expectedData?.value.name!
-        let expectedValue = "\(expectedKey!) (\(expectedName!))"
+        let expectedSymbol = expectedData?.value.symbol!
+        let expectedValue = "\(expectedKey!) (\(expectedSymbol!) \(expectedName!))"
         let returnedValue = viewModel?.listCurrency()
         
         XCTAssertEqual(expectedValue, returnedValue)
+    }
+    
+    func testListTimezones() throws {
+        
+        // only one time zone in initial data
+        
+        let expectedData = viewModel!.countryDetails.timezones!.first!
+        let returnedValue1 = viewModel!.listTimezones()
+        
+        XCTAssertEqual(expectedData, returnedValue1)
+        // similar to test language, with the inability to know the arrangement of the array going in, there will be problems testing more advanced sets.
+    }
+    
+    func testDriveRightSide() throws {
+        // initial data will favor driving left, so data will be exchanged to a right driving country afterwards for second in line test
+        
+        let returnedValue1 = viewModel!.driveRightSide()
+        XCTAssertFalse(returnedValue1)
+        
+        viewModel = CountryDetailViewModel(country: mock_countryDetailModel_4, countriesFetcher: APIFetcher!, bookmarkManager: bookmarkManager!)
+        let returnedValue2 = viewModel!.driveRightSide()
+        XCTAssertTrue(returnedValue2)
+        
+    }
+    
+    func testDriveLeftSide() throws {
+        // initial data will favor driving left, so data will be exchanged to a right driving country afterwards for second in line test
+        
+        let returnedValue1 = viewModel!.driveLeftSide()
+        XCTAssertTrue(returnedValue1)
+        
+        viewModel = CountryDetailViewModel(country: mock_countryDetailModel_4, countriesFetcher: APIFetcher!, bookmarkManager: bookmarkManager!)
+        let returnedValue2 = viewModel!.driveLeftSide()
+        XCTAssertFalse(returnedValue2)
+        
     }
 }

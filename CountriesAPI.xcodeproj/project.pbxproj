@@ -47,6 +47,8 @@
 		7BD952A62C6FFC0B0071EC30 /* TabNavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD952A52C6FFC0B0071EC30 /* TabNavigationManager.swift */; };
 		7BD952A72C6FFC0B0071EC30 /* TabNavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD952A52C6FFC0B0071EC30 /* TabNavigationManager.swift */; };
 		7BD952A82C6FFC0B0071EC30 /* TabNavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD952A52C6FFC0B0071EC30 /* TabNavigationManager.swift */; };
+		7BD952AA2C7012790071EC30 /* BookmarkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD952A92C7012790071EC30 /* BookmarkManagerTests.swift */; };
+		7BD952AC2C70184B0071EC30 /* TabNavigationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD952AB2C70184B0071EC30 /* TabNavigationManagerTests.swift */; };
 		7BDCFA092C692D9F00BE2FE1 /* CountryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDCFA082C692D9F00BE2FE1 /* CountryDetailView.swift */; };
 		7BDCFA0A2C692D9F00BE2FE1 /* CountryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDCFA082C692D9F00BE2FE1 /* CountryDetailView.swift */; };
 		7BDCFA0B2C692D9F00BE2FE1 /* CountryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDCFA082C692D9F00BE2FE1 /* CountryDetailView.swift */; };
@@ -134,6 +136,8 @@
 		7B3F242E2C68202C0084F777 /* CountryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCellView.swift; sourceTree = "<group>"; };
 		7B3F24372C6828360084F777 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		7BD952A52C6FFC0B0071EC30 /* TabNavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationManager.swift; sourceTree = "<group>"; };
+		7BD952A92C7012790071EC30 /* BookmarkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkManagerTests.swift; sourceTree = "<group>"; };
+		7BD952AB2C70184B0071EC30 /* TabNavigationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationManagerTests.swift; sourceTree = "<group>"; };
 		7BDCFA082C692D9F00BE2FE1 /* CountryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailView.swift; sourceTree = "<group>"; };
 		7BDCFA0C2C692DE600BE2FE1 /* CountryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailViewModel.swift; sourceTree = "<group>"; };
 		7BDCFA112C692E1C00BE2FE1 /* MockCountryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCountryDetailViewModel.swift; sourceTree = "<group>"; };
@@ -208,6 +212,8 @@
 				7BDD566B2C6BD39800168485 /* CountriesListViewModelTests.swift */,
 				7BDD566D2C6BD3A700168485 /* CountryDetailViewModelTests.swift */,
 				7BDD566F2C6BD48E00168485 /* CountriesAPIManagerTests.swift */,
+				7BD952A92C7012790071EC30 /* BookmarkManagerTests.swift */,
+				7BD952AB2C70184B0071EC30 /* TabNavigationManagerTests.swift */,
 			);
 			path = CountriesAPITests;
 			sourceTree = "<group>";
@@ -557,6 +563,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BDCFA132C692E1C00BE2FE1 /* MockCountryDetailViewModel.swift in Sources */,
+				7BD952AC2C70184B0071EC30 /* TabNavigationManagerTests.swift in Sources */,
 				7BDCFA172C692E3800BE2FE1 /* MockCountryDetailsModels.swift in Sources */,
 				7BDCFA0A2C692D9F00BE2FE1 /* CountryDetailView.swift in Sources */,
 				7BDD56782C6BE87800168485 /* MockDownloadAPI.swift in Sources */,
@@ -581,6 +588,7 @@
 				7BDD56802C6BF02F00168485 /* URLManager.swift in Sources */,
 				7BE42BE92C6AD5000079739A /* MockCountryCellViewModel.swift in Sources */,
 				7BDD56742C6BE70C00168485 /* MockCountriesAPIManager.swift in Sources */,
+				7BD952AA2C7012790071EC30 /* BookmarkManagerTests.swift in Sources */,
 				7BDCFA0E2C692DE600BE2FE1 /* CountryDetailViewModel.swift in Sources */,
 				7BE82E942C6EAF11003D7A78 /* BookmarkManager.swift in Sources */,
 				7B3F241A2C67FCF90084F777 /* FetchAPI.swift in Sources */,

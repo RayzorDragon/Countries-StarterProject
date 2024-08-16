@@ -24,7 +24,7 @@ struct CountriesListView <Model>: View where Model:CountriesListViewModelInterfa
                                 country: country,
                                 countriesFetcher: CountriesAPIManager(), bookmarkManager: viewModel.bookmarkManager))
                     } label: {
-                        CountryCellView(viewModel: CountryCellViewModel(country: country, countriesFetcher: CountriesAPIManager(), bookmarkManager: viewModel.bookmarkManager))
+                        CountryCellView(viewModel: CountryCellViewModel(country: country, countriesFetcher: CountriesAPIManager(), bookmarkManager: viewModel.bookmarkManager, showBookmark: true))
                             .padding(.bottom, 20.0)
                     }
                 }

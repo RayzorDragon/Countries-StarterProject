@@ -11,20 +11,24 @@ import Combine
 protocol CountryCellViewModelInterface: ObservableObject {
     var country: CountryDetailModel { get set }
     var bookmarkManager: any BookmarkManagerInterface { get set }
-    init(country: CountryDetailModel, countriesFetcher: CountriesFetchable, bookmarkManager: any BookmarkManagerInterface)
+    var showBookmark: Bool { get set }
+    init(country: CountryDetailModel, countriesFetcher: CountriesFetchable, bookmarkManager: any BookmarkManagerInterface, showBookmark: Bool)
     func downloadFlag(_ sourceModel: ImageSourceModel)
+    func displayBookmark() -> Bool
 }
 
 class CountryCellViewModel {
     @Published var country: CountryDetailModel
     @Published var bookmarkManager: any BookmarkManagerInterface
+    @Published var showBookmark: Bool
     private let countriesFetcher: CountriesFetchable
     private var disposables = Set<AnyCancellable>()
     
-    required init(country: CountryDetailModel, countriesFetcher: CountriesFetchable, bookmarkManager: any BookmarkManagerInterface) {
+    required init(country: CountryDetailModel, countriesFetcher: CountriesFetchable, bookmarkManager: any BookmarkManagerInterface, showBookmark: Bool) {
         self.countriesFetcher = countriesFetcher
         self.country = country
         self.bookmarkManager = bookmarkManager
+        self.showBookmark = showBookmark
     }
 }
 
@@ -45,5 +49,9 @@ extension CountryCellViewModel: CountryCellViewModelInterface {
                 self?.country.flags?.pngData = imageData
             }
             .store(in: &disposables)
+    }
+    
+    func displayBookmark() -> Bool {
+        return bookmarkManager.contains(officalName: country.officialName())
     }
 }

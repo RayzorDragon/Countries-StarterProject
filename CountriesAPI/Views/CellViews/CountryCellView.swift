@@ -41,6 +41,17 @@ struct CountryCellView <Model>: View where Model:CountryCellViewModelInterface {
                 }
                 Spacer()
             }
+            VStack {
+                HStack(alignment: .top) {
+                    Spacer()
+                    if viewModel.showBookmark && viewModel.displayBookmark() {
+                        Image(systemName: "bookmark.fill")
+                            .padding(.top, 16.0)
+                            .padding(.trailing, 16.0)
+                    }
+                }
+                Spacer()
+            }
             
         }
         .onAppear {
@@ -52,5 +63,5 @@ struct CountryCellView <Model>: View where Model:CountryCellViewModelInterface {
 }
 
 #Preview {
-    CountryCellView(viewModel: MockCountryCellViewModel(country: mock_countryDetailModel_1, countriesFetcher: CountriesAPIManager(), bookmarkManager: BookmarkManager()))
+    CountryCellView(viewModel: MockCountryCellViewModel(country: mock_countryDetailModel_1, countriesFetcher: CountriesAPIManager(), bookmarkManager: BookmarkManager(), showBookmark: true))
 }

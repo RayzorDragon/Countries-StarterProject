@@ -20,7 +20,7 @@ struct BookmarkedCountriesListView <Model>: View where Model:BookmarkedCountries
             LazyVGrid(columns: [GridItem(.flexible(minimum: 100.0, maximum: UIScreen.main.bounds.size.width))]) {
                 ForEach(viewModel.bookmarkedCountrylist) { country in
                     
-                    CountryCellView(viewModel: CountryCellViewModel(country: country, countriesFetcher: CountriesAPIManager(), bookmarkManager: viewModel.bookmarkManager))
+                    CountryCellView(viewModel: CountryCellViewModel(country: country, countriesFetcher: CountriesAPIManager(), bookmarkManager: viewModel.bookmarkManager, showBookmark: false))
                             .padding(.bottom, 20.0)
                 }
             }

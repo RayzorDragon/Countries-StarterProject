@@ -9,12 +9,24 @@ import SwiftUI
 
 @main
 struct CountriesAPIApp: App {
-    let viewModel = CountriesListViewModel(countriesFetcher: CountriesAPIManager(), bookmarkManager: BookmarkManager())
+    @ObservedObject private var tabManager: TabNavigationManager
+    let bookmarkManager: BookmarkManager
+    let listViewModel: CountriesListViewModel
+    let bookmarkedViewModel: BookmarkedCountriesListViewModel
+    
+    init() {
+        bookmarkManager = BookmarkManager()
+        listViewModel = CountriesListViewModel(countriesFetcher: CountriesAPIManager(), bookmarkManager: bookmarkManager)
+        bookmarkedViewModel = BookmarkedCountriesListViewModel(countriesFetcher: CountriesAPIManager(), bookmarkManager: bookmarkManager)
+        tabManager = TabNavigationManager(listManager: listViewModel, bookmarkManager: bookmarkedViewModel)
+        
+    }
+    
     var body: some Scene {
         WindowGroup {
-            TabView {
+            TabView(selection: $tabManager.activeTab) {
                 NavigationStack {
-                    CountriesListView(viewModel: viewModel)
+                    CountriesListView(viewModel: listViewModel)
                 }
                 .tabItem {
                     Text("Search")
@@ -22,7 +34,7 @@ struct CountriesAPIApp: App {
                 }
                 .tag(0)
                 NavigationStack {
-                    Text("Saved View")
+                    BookmarkedCountriesListView(viewModel: bookmarkedViewModel)
                 }
                 .tabItem {
                     Text("Saved")

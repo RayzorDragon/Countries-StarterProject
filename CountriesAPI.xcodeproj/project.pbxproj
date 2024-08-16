@@ -44,6 +44,9 @@
 		7B3F24382C6828360084F777 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3F24372C6828360084F777 /* UIColor.swift */; };
 		7B3F24392C6828360084F777 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3F24372C6828360084F777 /* UIColor.swift */; };
 		7B3F243A2C6828360084F777 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3F24372C6828360084F777 /* UIColor.swift */; };
+		7BD952A62C6FFC0B0071EC30 /* TabNavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD952A52C6FFC0B0071EC30 /* TabNavigationManager.swift */; };
+		7BD952A72C6FFC0B0071EC30 /* TabNavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD952A52C6FFC0B0071EC30 /* TabNavigationManager.swift */; };
+		7BD952A82C6FFC0B0071EC30 /* TabNavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD952A52C6FFC0B0071EC30 /* TabNavigationManager.swift */; };
 		7BDCFA092C692D9F00BE2FE1 /* CountryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDCFA082C692D9F00BE2FE1 /* CountryDetailView.swift */; };
 		7BDCFA0A2C692D9F00BE2FE1 /* CountryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDCFA082C692D9F00BE2FE1 /* CountryDetailView.swift */; };
 		7BDCFA0B2C692D9F00BE2FE1 /* CountryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDCFA082C692D9F00BE2FE1 /* CountryDetailView.swift */; };
@@ -81,6 +84,15 @@
 		7BE82E932C6EAF11003D7A78 /* BookmarkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE82E922C6EAF11003D7A78 /* BookmarkManager.swift */; };
 		7BE82E942C6EAF11003D7A78 /* BookmarkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE82E922C6EAF11003D7A78 /* BookmarkManager.swift */; };
 		7BE82E952C6EAF11003D7A78 /* BookmarkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE82E922C6EAF11003D7A78 /* BookmarkManager.swift */; };
+		7BE82E992C6EBB35003D7A78 /* BookmarkedCountriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE82E982C6EBB35003D7A78 /* BookmarkedCountriesListView.swift */; };
+		7BE82E9A2C6EBB35003D7A78 /* BookmarkedCountriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE82E982C6EBB35003D7A78 /* BookmarkedCountriesListView.swift */; };
+		7BE82E9B2C6EBB35003D7A78 /* BookmarkedCountriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE82E982C6EBB35003D7A78 /* BookmarkedCountriesListView.swift */; };
+		7BE82E9D2C6EBB45003D7A78 /* BookmarkedCountriesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE82E9C2C6EBB45003D7A78 /* BookmarkedCountriesListViewModel.swift */; };
+		7BE82E9E2C6EBB45003D7A78 /* BookmarkedCountriesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE82E9C2C6EBB45003D7A78 /* BookmarkedCountriesListViewModel.swift */; };
+		7BE82E9F2C6EBB45003D7A78 /* BookmarkedCountriesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE82E9C2C6EBB45003D7A78 /* BookmarkedCountriesListViewModel.swift */; };
+		7BE82EA12C6EBB62003D7A78 /* MockBookmarkedCountriesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE82EA02C6EBB62003D7A78 /* MockBookmarkedCountriesListViewModel.swift */; };
+		7BE82EA22C6EBB62003D7A78 /* MockBookmarkedCountriesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE82EA02C6EBB62003D7A78 /* MockBookmarkedCountriesListViewModel.swift */; };
+		7BE82EA32C6EBB62003D7A78 /* MockBookmarkedCountriesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE82EA02C6EBB62003D7A78 /* MockBookmarkedCountriesListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +133,7 @@
 		7B3F24292C680C670084F777 /* MockCountriesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCountriesListViewModel.swift; sourceTree = "<group>"; };
 		7B3F242E2C68202C0084F777 /* CountryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCellView.swift; sourceTree = "<group>"; };
 		7B3F24372C6828360084F777 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		7BD952A52C6FFC0B0071EC30 /* TabNavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationManager.swift; sourceTree = "<group>"; };
 		7BDCFA082C692D9F00BE2FE1 /* CountryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailView.swift; sourceTree = "<group>"; };
 		7BDCFA0C2C692DE600BE2FE1 /* CountryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailViewModel.swift; sourceTree = "<group>"; };
 		7BDCFA112C692E1C00BE2FE1 /* MockCountryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCountryDetailViewModel.swift; sourceTree = "<group>"; };
@@ -137,6 +150,9 @@
 		7BE42BE22C6AD26A0079739A /* CountryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCellViewModel.swift; sourceTree = "<group>"; };
 		7BE42BE72C6AD5000079739A /* MockCountryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCountryCellViewModel.swift; sourceTree = "<group>"; };
 		7BE82E922C6EAF11003D7A78 /* BookmarkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkManager.swift; sourceTree = "<group>"; };
+		7BE82E982C6EBB35003D7A78 /* BookmarkedCountriesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkedCountriesListView.swift; sourceTree = "<group>"; };
+		7BE82E9C2C6EBB45003D7A78 /* BookmarkedCountriesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkedCountriesListViewModel.swift; sourceTree = "<group>"; };
+		7BE82EA02C6EBB62003D7A78 /* MockBookmarkedCountriesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBookmarkedCountriesListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				7B3F242D2C6820010084F777 /* CellViews */,
+				7BE82E962C6EBAF2003D7A78 /* BookmarkedCountryListView */,
 				5406593E2C58100D00AF66E8 /* CountriesListView */,
 				5406593F2C58100D00AF66E8 /* CountryDetailView */,
 			);
@@ -255,6 +272,7 @@
 		540659422C58100D00AF66E8 /* CountriesAPI */ = {
 			isa = PBXGroup;
 			children = (
+				7BD952A02C6FE4890071EC30 /* Navigation */,
 				7BE82E912C6EAEF2003D7A78 /* Storage */,
 				7BE42BDD2C6AB7900079739A /* Conveniences */,
 				7B3F24362C6828270084F777 /* Extensions */,
@@ -307,6 +325,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		7BD952A02C6FE4890071EC30 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				7BD952A52C6FFC0B0071EC30 /* TabNavigationManager.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		7BDCFA102C692DF300BE2FE1 /* Mock */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,6 +374,24 @@
 				7BE82E922C6EAF11003D7A78 /* BookmarkManager.swift */,
 			);
 			path = Storage;
+			sourceTree = "<group>";
+		};
+		7BE82E962C6EBAF2003D7A78 /* BookmarkedCountryListView */ = {
+			isa = PBXGroup;
+			children = (
+				7BE82E972C6EBB1B003D7A78 /* Mock */,
+				7BE82E982C6EBB35003D7A78 /* BookmarkedCountriesListView.swift */,
+				7BE82E9C2C6EBB45003D7A78 /* BookmarkedCountriesListViewModel.swift */,
+			);
+			path = BookmarkedCountryListView;
+			sourceTree = "<group>";
+		};
+		7BE82E972C6EBB1B003D7A78 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				7BE82EA02C6EBB62003D7A78 /* MockBookmarkedCountriesListViewModel.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -482,9 +526,11 @@
 			files = (
 				7B3F24192C67FCF90084F777 /* FetchAPI.swift in Sources */,
 				7B3F24382C6828360084F777 /* UIColor.swift in Sources */,
+				7BE82EA12C6EBB62003D7A78 /* MockBookmarkedCountriesListViewModel.swift in Sources */,
 				7B3F24212C67FF420084F777 /* CountriesAPIManager.swift in Sources */,
 				540659452C58100D00AF66E8 /* CountriesListView.swift in Sources */,
 				7B3F241D2C67FE390084F777 /* JSONParser.swift in Sources */,
+				7BE82E9D2C6EBB45003D7A78 /* BookmarkedCountriesListViewModel.swift in Sources */,
 				7BDCFA162C692E3800BE2FE1 /* MockCountryDetailsModels.swift in Sources */,
 				7B3F240C2C67F9990084F777 /* CountryDetailModel.swift in Sources */,
 				7B3F24252C68058F0084F777 /* CountriesListViewModel.swift in Sources */,
@@ -496,11 +542,13 @@
 				7BDCFA0D2C692DE600BE2FE1 /* CountryDetailViewModel.swift in Sources */,
 				7BE42BDF2C6AB7B60079739A /* Fonts+Colors.swift in Sources */,
 				7BDD567F2C6BF02F00168485 /* URLManager.swift in Sources */,
+				7BE82E992C6EBB35003D7A78 /* BookmarkedCountriesListView.swift in Sources */,
 				540659432C58100D00AF66E8 /* CountriesAPIApp.swift in Sources */,
 				7B3F242A2C680C670084F777 /* MockCountriesListViewModel.swift in Sources */,
 				7B3F24112C67FAFB0084F777 /* APIError.swift in Sources */,
 				7BE42BE32C6AD26A0079739A /* CountryCellViewModel.swift in Sources */,
 				7BDCFA122C692E1C00BE2FE1 /* MockCountryDetailViewModel.swift in Sources */,
+				7BD952A62C6FFC0B0071EC30 /* TabNavigationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,6 +560,7 @@
 				7BDCFA172C692E3800BE2FE1 /* MockCountryDetailsModels.swift in Sources */,
 				7BDCFA0A2C692D9F00BE2FE1 /* CountryDetailView.swift in Sources */,
 				7BDD56782C6BE87800168485 /* MockDownloadAPI.swift in Sources */,
+				7BE82E9E2C6EBB45003D7A78 /* BookmarkedCountriesListViewModel.swift in Sources */,
 				7BDD566A2C6BD38500168485 /* CountryCellViewModelTests.swift in Sources */,
 				7BDD566E2C6BD3A700168485 /* CountryDetailViewModelTests.swift in Sources */,
 				7BE42BE42C6AD26A0079739A /* CountryCellViewModel.swift in Sources */,
@@ -521,6 +570,8 @@
 				7B3F241E2C67FE390084F777 /* JSONParser.swift in Sources */,
 				7BDD567C2C6BE88500168485 /* MockFetchAPI.swift in Sources */,
 				7B3F24222C67FF420084F777 /* CountriesAPIManager.swift in Sources */,
+				7BD952A72C6FFC0B0071EC30 /* TabNavigationManager.swift in Sources */,
+				7BE82EA22C6EBB62003D7A78 /* MockBookmarkedCountriesListViewModel.swift in Sources */,
 				7B3F24262C68058F0084F777 /* CountriesListViewModel.swift in Sources */,
 				7B3F24302C68202C0084F777 /* CountryCellView.swift in Sources */,
 				7BDD566C2C6BD39800168485 /* CountriesListViewModelTests.swift in Sources */,
@@ -534,6 +585,7 @@
 				7BE82E942C6EAF11003D7A78 /* BookmarkManager.swift in Sources */,
 				7B3F241A2C67FCF90084F777 /* FetchAPI.swift in Sources */,
 				7B3F24162C67FB590084F777 /* DownloadAPI.swift in Sources */,
+				7BE82E9A2C6EBB35003D7A78 /* BookmarkedCountriesListView.swift in Sources */,
 				25BA23A92AA918C500E43918 /* CountriesAPITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -553,16 +605,20 @@
 				7B3F240E2C67F9990084F777 /* CountryDetailModel.swift in Sources */,
 				7B3F24272C68058F0084F777 /* CountriesListViewModel.swift in Sources */,
 				7B3F24172C67FB590084F777 /* DownloadAPI.swift in Sources */,
+				7BD952A82C6FFC0B0071EC30 /* TabNavigationManager.swift in Sources */,
 				7B3F24312C68202C0084F777 /* CountryCellView.swift in Sources */,
 				7BDCFA0B2C692D9F00BE2FE1 /* CountryDetailView.swift in Sources */,
 				7BE42BEA2C6AD5000079739A /* MockCountryCellViewModel.swift in Sources */,
+				7BE82EA32C6EBB62003D7A78 /* MockBookmarkedCountriesListViewModel.swift in Sources */,
 				7BDCFA0F2C692DE600BE2FE1 /* CountryDetailViewModel.swift in Sources */,
 				7BDD56752C6BE70C00168485 /* MockCountriesAPIManager.swift in Sources */,
 				7BE42BE12C6AB7B60079739A /* Fonts+Colors.swift in Sources */,
 				7BE82E952C6EAF11003D7A78 /* BookmarkManager.swift in Sources */,
 				7BDD56812C6BF02F00168485 /* URLManager.swift in Sources */,
 				25BA23B32AA918C500E43918 /* CountriesAPIUITests.swift in Sources */,
+				7BE82E9F2C6EBB45003D7A78 /* BookmarkedCountriesListViewModel.swift in Sources */,
 				7B3F242C2C680C670084F777 /* MockCountriesListViewModel.swift in Sources */,
+				7BE82E9B2C6EBB35003D7A78 /* BookmarkedCountriesListView.swift in Sources */,
 				7B3F24132C67FAFB0084F777 /* APIError.swift in Sources */,
 				7BE42BE52C6AD26A0079739A /* CountryCellViewModel.swift in Sources */,
 				7BDCFA142C692E1C00BE2FE1 /* MockCountryDetailViewModel.swift in Sources */,

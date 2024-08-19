@@ -19,10 +19,8 @@ struct CountriesListView <Model>: View where Model:CountriesListViewModelInterfa
             LazyVGrid(columns: [GridItem(.flexible(minimum: 100.0, maximum: UIScreen.main.bounds.size.width))]) {
                 ForEach(viewModel.filteredCountryList) { country in
                     NavigationLink {
-                        CountryDetailView(
-                            viewModel: CountryDetailViewModel(
-                                country: country,
-                                countriesFetcher: CountriesAPIManager(), bookmarkManager: viewModel.bookmarkManager))
+                        CountryDetailTabView(viewModel: CountryDetailTabViewModel(country: country, bookmarkManager: viewModel.bookmarkManager))
+                            .toolbar(.hidden, for: .tabBar)
                     } label: {
                         CountryCellView(viewModel: CountryCellViewModel(country: country, countriesFetcher: CountriesAPIManager(), bookmarkManager: viewModel.bookmarkManager, showBookmark: true))
                             .padding(.bottom, 20.0)

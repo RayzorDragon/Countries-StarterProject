@@ -21,11 +21,6 @@ class MockCountryDetailViewModel: CountryDetailViewModelInterface {
     }
     func downloadFlag(_ sourceModel: ImageSourceModel) {}
     func downloadCoatOfArms(_ sourceModel: ImageSourceModel) {}
-    func listLanguages() -> String { return "" }
-    func listCurrency() -> String { return "" }
-    func listTimezones() -> String { return "" }
-    func driveRightSide() -> Bool { return true }
-    func driveLeftSide() -> Bool { return false }
     func saveButtonTapped() { }
     
     

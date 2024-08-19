@@ -23,6 +23,67 @@ protocol CountryDetailViewModelInterface: ObservableObject {
     func saveButtonTapped()
 }
 
+extension CountryDetailViewModelInterface {
+    
+    func listLanguages() -> String {
+        guard let languages = countryDetails.languages else { return "" }
+        var languageString = ""
+        
+        for language in languages.values {
+            if languageString.isEmpty {
+                languageString = "•  " + language
+            } else {
+                languageString = languageString + "\n•  " + language
+            }
+        }
+        
+        return languageString
+    }
+    
+    func listCurrency() -> String {
+        guard let currencies = countryDetails.currencies else { return "" }
+        var currencyString = ""
+        
+        for currency in currencies {
+            let currencyShort = currency.key
+            guard let currencyName = currency.value.name else { continue }
+            guard let currencySymbol = currency.value.symbol else { continue }
+            let formatting = currencyShort + " (" + currencySymbol + " " + currencyName + ")"
+            if currencyString.isEmpty {
+                currencyString = formatting
+            } else {
+                currencyString = currencyString + ", " + formatting
+            }
+        }
+        
+        return currencyString
+    }
+    
+    func listTimezones() -> String {
+        guard let zones = countryDetails.timezones else { return "" }
+        var zonesString = ""
+        
+        for zone in zones {
+            if zonesString.isEmpty {
+                zonesString = zone
+            } else {
+                zonesString = zonesString + "\n" + zone
+            }
+        }
+        
+        return zonesString
+    }
+    
+    func driveRightSide() -> Bool {
+        return countryDetails.driverSide().lowercased() == "right"
+    }
+    
+    func driveLeftSide() -> Bool {
+        return countryDetails.driverSide().lowercased() == "left"
+    }
+    
+}
+
 class CountryDetailViewModel {
     @Published var countryDetails: CountryDetailModel
     @Published var bookmarkManager: any BookmarkManagerInterface
@@ -71,63 +132,6 @@ extension CountryDetailViewModel: CountryDetailViewModelInterface {
                 self?.countryDetails.coatOfArms?.pngData = imageData
             }
             .store(in: &disposables)
-    }
-    
-    func listLanguages() -> String {
-        guard let languages = countryDetails.languages else { return "" }
-        var languageString = ""
-        
-        for language in languages.values {
-            if languageString.isEmpty {
-                languageString = language
-            } else {
-                languageString = languageString + "\n" + language
-            }
-        }
-        
-        return languageString
-    }
-    
-    func listCurrency() -> String {
-        guard let currencies = countryDetails.currencies else { return "" }
-        var currencyString = ""
-        
-        for currency in currencies {
-            let currencyShort = currency.key
-            guard let currencyName = currency.value.name else { continue }
-            guard let currencySymbol = currency.value.symbol else { continue }
-            let formatting = currencyShort + " (" + currencySymbol + " " + currencyName + ")"
-            if currencyString.isEmpty {
-                currencyString = formatting
-            } else {
-                currencyString = currencyString + ", " + formatting
-            }
-        }
-        
-        return currencyString
-    }
-    
-    func listTimezones() -> String {
-        guard let zones = countryDetails.timezones else { return "" }
-        var zonesString = ""
-        
-        for zone in zones {
-            if zonesString.isEmpty {
-                zonesString = zone
-            } else {
-                zonesString = zonesString + "\n" + zone
-            }
-        }
-        
-        return zonesString
-    }
-    
-    func driveRightSide() -> Bool {
-        return countryDetails.driverSide().lowercased() == "right"
-    }
-    
-    func driveLeftSide() -> Bool {
-        return countryDetails.driverSide().lowercased() == "left"
     }
     
     func saveButtonTapped() {

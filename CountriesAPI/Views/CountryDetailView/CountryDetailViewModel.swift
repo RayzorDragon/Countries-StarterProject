@@ -12,7 +12,7 @@ protocol CountryDetailViewModelInterface: ObservableObject {
     var countryDetails: CountryDetailModel { get set }
     var bookmarkManager: any BookmarkManagerInterface { get set }
     var bookmarked: Bool { get set }
-    init(country: CountryDetailModel, countriesFetcher: CountriesFetchable, bookmarkManager: any BookmarkManagerInterface)
+    init(country: CountryDetailModel, countriesFetcher: CountriesFetchable, bookmarkManager: any BookmarkManagerInterface, countryTabViewModel: any CountryDetailTabViewModelInterface)
     func downloadFlag(_ sourceModel: ImageSourceModel)
     func downloadCoatOfArms(_ sourceModel: ImageSourceModel)
     func listLanguages() -> String
@@ -89,14 +89,16 @@ class CountryDetailViewModel {
     @Published var countryDetails: CountryDetailModel
     @Published var bookmarkManager: any BookmarkManagerInterface
     @Published var bookmarked: Bool
+    private let countryTabViewModel: any CountryDetailTabViewModelInterface
     private let countriesFetcher: CountriesFetchable
     private var disposables = Set<AnyCancellable>()
     
-    required init(country: CountryDetailModel, countriesFetcher: CountriesFetchable, bookmarkManager: any BookmarkManagerInterface) {
+    required init(country: CountryDetailModel, countriesFetcher: CountriesFetchable, bookmarkManager: any BookmarkManagerInterface, countryTabViewModel: any CountryDetailTabViewModelInterface) {
         self.countriesFetcher = countriesFetcher
         self.countryDetails = country
         self.bookmarkManager = bookmarkManager
         self.bookmarked = bookmarkManager.contains(officalName: country.officialName())
+        self.countryTabViewModel = countryTabViewModel
     }
 }
 
@@ -141,6 +143,6 @@ extension CountryDetailViewModel: CountryDetailViewModelInterface {
     }
     
     func mapButtonTapped() {
-        print("Map Button Tapped")
+        countryTabViewModel.mapButtonTapped()
     }
 }

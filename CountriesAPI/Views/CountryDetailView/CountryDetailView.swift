@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CountryDetailView <Model>: View where Model:CountryDetailTabViewModelInterface {
+struct CountryDetailView <Model>: View where Model:CountryDetailViewModelInterface {
     
     @StateObject private var viewModel: Model
     init (viewModel: Model) {
@@ -30,13 +30,11 @@ struct CountryDetailView <Model>: View where Model:CountryDetailTabViewModelInte
                     }
                     .padding(.leading, 16.0)
                     .padding(.trailing, 16.0)
-                // center of this subview aligned to .bottom
                 .alignmentGuide(VerticalAlignment.bottom,
                                 computeValue: { d in d[VerticalAlignment.center] })
                 .alignmentGuide(HorizontalAlignment.leading, computeValue: { d in
                     d[HorizontalAlignment.leading]
                 })
-                // TODO: needs to become a button
                     
                 }
                 
@@ -70,10 +68,10 @@ struct CountryDetailView <Model>: View where Model:CountryDetailTabViewModelInte
         }
         .onAppear {
             if viewModel.countryDetails.flags?.pngData == nil {
-                viewModel.detailsViewModel.downloadFlag(viewModel.countryDetails.flags ?? ImageSourceModel())
+                viewModel.downloadFlag(viewModel.countryDetails.flags ?? ImageSourceModel())
             }
             if viewModel.countryDetails.coatOfArms?.pngData == nil {
-                viewModel.detailsViewModel.downloadCoatOfArms(viewModel.countryDetails.coatOfArms ?? ImageSourceModel())
+                viewModel.downloadCoatOfArms(viewModel.countryDetails.coatOfArms ?? ImageSourceModel())
             }
             
                 
@@ -82,9 +80,9 @@ struct CountryDetailView <Model>: View where Model:CountryDetailTabViewModelInte
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             Button {
-                viewModel.detailsViewModel.saveButtonTapped()
+                viewModel.saveButtonTapped()
             } label: {
-                Image(systemName: viewModel.detailsViewModel.bookmarked ? "bookmark.fill" : "bookmark")
+                Image(systemName: viewModel.bookmarked ? "bookmark.fill" : "bookmark")
             }
 
         }
@@ -171,11 +169,11 @@ struct CountryDetailView <Model>: View where Model:CountryDetailTabViewModelInte
     }
     
     @ViewBuilder func languagesView() -> some View {
-        bubbledTextView(string1: "Language(s)", string2: viewModel.detailsViewModel.listLanguages())
+        bubbledTextView(string1: "Language(s)", string2: viewModel.listLanguages())
     }
     
     @ViewBuilder func currenciesView() -> some View {
-        bubbledTextView(string1: "Currencies", string2: viewModel.detailsViewModel.listCurrency())
+        bubbledTextView(string1: "Currencies", string2: viewModel.listCurrency())
     }
     
     @ViewBuilder func populationView() -> some View {
@@ -196,13 +194,13 @@ struct CountryDetailView <Model>: View where Model:CountryDetailTabViewModelInte
                     Text("Left")
                         .font(countryDetailGenericInfoFont())
                         .foregroundStyle(grayColorCountryDetailsInfo() )
-                        .opacity(viewModel.detailsViewModel.driveLeftSide() ? 1.0 : 0.3)
+                        .opacity(viewModel.driveLeftSide() ? 1.0 : 0.3)
                     Text(Image(systemName: "car.circle"))
                         .font(countryDetailGenericInfoFont())
                         .foregroundStyle(grayColorCountryDetailsTitle())
                     Text("Right")
                         .font(countryDetailGenericInfoFont())
-                        .foregroundStyle(grayColorCountryDetailsInfo()).opacity(viewModel.detailsViewModel.driveRightSide() ? 1.0 : 0.3)
+                        .foregroundStyle(grayColorCountryDetailsInfo()).opacity(viewModel.driveRightSide() ? 1.0 : 0.3)
                 }
                 Spacer()
             }
@@ -219,7 +217,7 @@ struct CountryDetailView <Model>: View where Model:CountryDetailTabViewModelInte
     }
     
     @ViewBuilder func timezoneView() -> some View {
-        bubbledTextView(string1: "Timezone(s)", string2: viewModel.detailsViewModel.listTimezones())
+        bubbledTextView(string1: "Timezone(s)", string2: viewModel.listTimezones())
     }
     
     @ViewBuilder func shrinkingTextView(string1: String, string2: String) -> some View {
@@ -311,5 +309,5 @@ struct CountryDetailView <Model>: View where Model:CountryDetailTabViewModelInte
 }
 
 #Preview {
-    CountryDetailView(viewModel: MockCountryDetailTabViewModel(country: mock_countryDetailModel_4, bookmarkManager: BookmarkManager()))
+    CountryDetailView(viewModel: MockCountryDetailViewModel(country: mock_countryDetailModel_4, countriesFetcher: CountriesAPIManager(), bookmarkManager: BookmarkManager(), countryTabViewModel: CountryDetailTabViewModel(country: mock_countryDetailModel_4, bookmarkManager: BookmarkManager())))
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 struct CountryDetailModel: Codable, Identifiable {
     let id: UUID = UUID()
@@ -21,6 +22,8 @@ struct CountryDetailModel: Codable, Identifiable {
     var coatOfArms: ImageSourceModel?
     var area: Float?
     var timezones: [String]?
+    var capitalInfo: CapitalInfo?
+    var latlng: [Double]?
     
     func officialName() -> String {
         return name?.official ?? ""
@@ -74,6 +77,20 @@ struct CountryDetailModel: Codable, Identifiable {
     func coatOfArmsURL() -> String {
         return coatOfArms?.png ?? ""
     }
+    
+    func countryLatLong() -> CLLocationCoordinate2D? {
+        guard let lat = latlng?[0] else { return nil }
+        guard let long = latlng?[1] else { return nil }
+        
+        return CLLocationCoordinate2D(latitude: lat, longitude: long)
+    }
+    
+    func capitalLatLong() -> CLLocationCoordinate2D? {
+        guard let lat = capitalInfo?.latlng?[0] else { return nil }
+        guard let long = capitalInfo?.latlng?[1] else { return nil }
+        
+        return CLLocationCoordinate2D(latitude: lat, longitude: long)
+    }
 }
 
 extension CountryDetailModel: Equatable {
@@ -108,4 +125,8 @@ struct CurrencyModel: Codable {
 
 struct CarModel: Codable {
     var side: String?
+}
+
+struct CapitalInfo: Codable {
+    var latlng: [Double]?
 }

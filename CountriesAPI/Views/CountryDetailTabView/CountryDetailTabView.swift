@@ -18,7 +18,11 @@ struct CountryDetailTabView <Model>: View where Model: CountryDetailTabViewModel
         TabView(selection: $viewModel.activeTab) {
             NavigationStack {
                 CountryDetailView(
-                    viewModel: viewModel)
+                    viewModel: CountryDetailViewModel(
+                        country: viewModel.countryDetails,
+                        countriesFetcher: CountriesAPIManager(),
+                        bookmarkManager: viewModel.bookmarkManager,
+                        countryTabViewModel: viewModel))
             }
             .tabItem {
                 Text("Overview")
@@ -27,7 +31,7 @@ struct CountryDetailTabView <Model>: View where Model: CountryDetailTabViewModel
             .tag(0)
             
             NavigationStack {
-                CountryDetailMapView()
+                CountryDetailMapView(viewModel: CountryDetailMapViewModel(country: viewModel.countryDetails, locationManager: LocationManager()))
             }
             .tabItem {
                 Text("Map")

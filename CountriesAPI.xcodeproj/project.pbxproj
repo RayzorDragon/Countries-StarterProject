@@ -82,6 +82,15 @@
 		7BDD567F2C6BF02F00168485 /* URLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDD567E2C6BF02F00168485 /* URLManager.swift */; };
 		7BDD56802C6BF02F00168485 /* URLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDD567E2C6BF02F00168485 /* URLManager.swift */; };
 		7BDD56812C6BF02F00168485 /* URLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDD567E2C6BF02F00168485 /* URLManager.swift */; };
+		7BDEC0C42C767EBD00C95CE0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDEC0C32C767EBD00C95CE0 /* LocationManager.swift */; };
+		7BDEC0C52C767EBD00C95CE0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDEC0C32C767EBD00C95CE0 /* LocationManager.swift */; };
+		7BDEC0C62C767EBD00C95CE0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDEC0C32C767EBD00C95CE0 /* LocationManager.swift */; };
+		7BDEC0CA2C76808000C95CE0 /* CountryDetailMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDEC0C92C76808000C95CE0 /* CountryDetailMapViewModel.swift */; };
+		7BDEC0CB2C76808000C95CE0 /* CountryDetailMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDEC0C92C76808000C95CE0 /* CountryDetailMapViewModel.swift */; };
+		7BDEC0CC2C76808000C95CE0 /* CountryDetailMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDEC0C92C76808000C95CE0 /* CountryDetailMapViewModel.swift */; };
+		7BDEC0CE2C76808D00C95CE0 /* MockCountryDetailMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDEC0CD2C76808D00C95CE0 /* MockCountryDetailMapViewModel.swift */; };
+		7BDEC0CF2C76808D00C95CE0 /* MockCountryDetailMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDEC0CD2C76808D00C95CE0 /* MockCountryDetailMapViewModel.swift */; };
+		7BDEC0D02C76808D00C95CE0 /* MockCountryDetailMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDEC0CD2C76808D00C95CE0 /* MockCountryDetailMapViewModel.swift */; };
 		7BE42BDF2C6AB7B60079739A /* Fonts+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE42BDE2C6AB7B60079739A /* Fonts+Colors.swift */; };
 		7BE42BE02C6AB7B60079739A /* Fonts+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE42BDE2C6AB7B60079739A /* Fonts+Colors.swift */; };
 		7BE42BE12C6AB7B60079739A /* Fonts+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE42BDE2C6AB7B60079739A /* Fonts+Colors.swift */; };
@@ -162,6 +171,9 @@
 		7BDD56762C6BE87800168485 /* MockDownloadAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDownloadAPI.swift; sourceTree = "<group>"; };
 		7BDD567A2C6BE88500168485 /* MockFetchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFetchAPI.swift; sourceTree = "<group>"; };
 		7BDD567E2C6BF02F00168485 /* URLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLManager.swift; sourceTree = "<group>"; };
+		7BDEC0C32C767EBD00C95CE0 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		7BDEC0C92C76808000C95CE0 /* CountryDetailMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailMapViewModel.swift; sourceTree = "<group>"; };
+		7BDEC0CD2C76808D00C95CE0 /* MockCountryDetailMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCountryDetailMapViewModel.swift; sourceTree = "<group>"; };
 		7BE42BDE2C6AB7B60079739A /* Fonts+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Fonts+Colors.swift"; sourceTree = "<group>"; };
 		7BE42BE22C6AD26A0079739A /* CountryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCellViewModel.swift; sourceTree = "<group>"; };
 		7BE42BE72C6AD5000079739A /* MockCountryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCountryCellViewModel.swift; sourceTree = "<group>"; };
@@ -291,6 +303,7 @@
 		540659422C58100D00AF66E8 /* CountriesAPI */ = {
 			isa = PBXGroup;
 			children = (
+				7BDEC0C22C767EA400C95CE0 /* GeoServices */,
 				7BD952A02C6FE4890071EC30 /* Navigation */,
 				7BE82E912C6EAEF2003D7A78 /* Storage */,
 				7BE42BDD2C6AB7900079739A /* Conveniences */,
@@ -348,7 +361,9 @@
 		7B71DD702C73F73D006BFB89 /* CountryMapView */ = {
 			isa = PBXGroup;
 			children = (
+				7BDEC0C82C76806500C95CE0 /* Mock */,
 				7B71DD742C73F7B1006BFB89 /* CountryDetailMapView.swift */,
+				7BDEC0C92C76808000C95CE0 /* CountryDetailMapViewModel.swift */,
 			);
 			path = CountryMapView;
 			sourceTree = "<group>";
@@ -394,6 +409,22 @@
 				7BDD56722C6BE70C00168485 /* MockCountriesAPIManager.swift */,
 				7BDD56762C6BE87800168485 /* MockDownloadAPI.swift */,
 				7BDD567A2C6BE88500168485 /* MockFetchAPI.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		7BDEC0C22C767EA400C95CE0 /* GeoServices */ = {
+			isa = PBXGroup;
+			children = (
+				7BDEC0C32C767EBD00C95CE0 /* LocationManager.swift */,
+			);
+			path = GeoServices;
+			sourceTree = "<group>";
+		};
+		7BDEC0C82C76806500C95CE0 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				7BDEC0CD2C76808D00C95CE0 /* MockCountryDetailMapViewModel.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -571,7 +602,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B3F24192C67FCF90084F777 /* FetchAPI.swift in Sources */,
+				7BDEC0CE2C76808D00C95CE0 /* MockCountryDetailMapViewModel.swift in Sources */,
 				7B3F24382C6828360084F777 /* UIColor.swift in Sources */,
+				7BDEC0C42C767EBD00C95CE0 /* LocationManager.swift in Sources */,
 				7BE82EA12C6EBB62003D7A78 /* MockBookmarkedCountriesListViewModel.swift in Sources */,
 				7B3F24212C67FF420084F777 /* CountriesAPIManager.swift in Sources */,
 				540659452C58100D00AF66E8 /* CountriesListView.swift in Sources */,
@@ -599,6 +632,7 @@
 				7B71DD752C73F7B1006BFB89 /* CountryDetailMapView.swift in Sources */,
 				7BDCFA122C692E1C00BE2FE1 /* MockCountryDetailViewModel.swift in Sources */,
 				7BD952A62C6FFC0B0071EC30 /* TabNavigationManager.swift in Sources */,
+				7BDEC0CA2C76808000C95CE0 /* CountryDetailMapViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,6 +648,7 @@
 				7BE82E9E2C6EBB45003D7A78 /* BookmarkedCountriesListViewModel.swift in Sources */,
 				7BDD566A2C6BD38500168485 /* CountryCellViewModelTests.swift in Sources */,
 				7BDD566E2C6BD3A700168485 /* CountryDetailViewModelTests.swift in Sources */,
+				7BDEC0C52C767EBD00C95CE0 /* LocationManager.swift in Sources */,
 				7BE42BE42C6AD26A0079739A /* CountryCellViewModel.swift in Sources */,
 				7B3F242B2C680C670084F777 /* MockCountriesListViewModel.swift in Sources */,
 				7B3F240D2C67F9990084F777 /* CountryDetailModel.swift in Sources */,
@@ -634,11 +669,13 @@
 				7BDD56802C6BF02F00168485 /* URLManager.swift in Sources */,
 				7BE42BE92C6AD5000079739A /* MockCountryCellViewModel.swift in Sources */,
 				7BDD56742C6BE70C00168485 /* MockCountriesAPIManager.swift in Sources */,
+				7BDEC0CF2C76808D00C95CE0 /* MockCountryDetailMapViewModel.swift in Sources */,
 				7BD952AA2C7012790071EC30 /* BookmarkManagerTests.swift in Sources */,
 				7BDCFA0E2C692DE600BE2FE1 /* CountryDetailViewModel.swift in Sources */,
 				7BE82E942C6EAF11003D7A78 /* BookmarkManager.swift in Sources */,
 				7B3F241A2C67FCF90084F777 /* FetchAPI.swift in Sources */,
 				7B3F24162C67FB590084F777 /* DownloadAPI.swift in Sources */,
+				7BDEC0CB2C76808000C95CE0 /* CountryDetailMapViewModel.swift in Sources */,
 				7BE82E9A2C6EBB35003D7A78 /* BookmarkedCountriesListView.swift in Sources */,
 				25BA23A92AA918C500E43918 /* CountriesAPITests.swift in Sources */,
 			);
@@ -655,9 +692,11 @@
 				7B3F24232C67FF420084F777 /* CountriesAPIManager.swift in Sources */,
 				25BA23B52AA918C500E43918 /* CountriesAPIUITestsLaunchTests.swift in Sources */,
 				7B71DD7E2C73F9DE006BFB89 /* MockCountryDetailTabViewModel.swift in Sources */,
+				7BDEC0C62C767EBD00C95CE0 /* LocationManager.swift in Sources */,
 				7B3F241F2C67FE390084F777 /* JSONParser.swift in Sources */,
 				7BDCFA182C692E3800BE2FE1 /* MockCountryDetailsModels.swift in Sources */,
 				7B3F240E2C67F9990084F777 /* CountryDetailModel.swift in Sources */,
+				7BDEC0CC2C76808000C95CE0 /* CountryDetailMapViewModel.swift in Sources */,
 				7B3F24272C68058F0084F777 /* CountriesListViewModel.swift in Sources */,
 				7B3F24172C67FB590084F777 /* DownloadAPI.swift in Sources */,
 				7BD952A82C6FFC0B0071EC30 /* TabNavigationManager.swift in Sources */,
@@ -665,6 +704,7 @@
 				7BDCFA0B2C692D9F00BE2FE1 /* CountryDetailView.swift in Sources */,
 				7BE42BEA2C6AD5000079739A /* MockCountryCellViewModel.swift in Sources */,
 				7BE82EA32C6EBB62003D7A78 /* MockBookmarkedCountriesListViewModel.swift in Sources */,
+				7BDEC0D02C76808D00C95CE0 /* MockCountryDetailMapViewModel.swift in Sources */,
 				7BDCFA0F2C692DE600BE2FE1 /* CountryDetailViewModel.swift in Sources */,
 				7BDD56752C6BE70C00168485 /* MockCountriesAPIManager.swift in Sources */,
 				7BE42BE12C6AB7B60079739A /* Fonts+Colors.swift in Sources */,
@@ -824,11 +864,13 @@
 				DEVELOPMENT_TEAM = Y5XFZAHW66;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app needs access to your location to provide location-based services.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -853,11 +895,13 @@
 				DEVELOPMENT_TEAM = Y5XFZAHW66;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app needs access to your location to provide location-based services.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

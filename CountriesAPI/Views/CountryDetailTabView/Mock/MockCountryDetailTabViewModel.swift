@@ -8,8 +8,7 @@
 import Foundation
 
 class MockCountryDetailTabViewModel: CountryDetailTabViewModelInterface {
-    var detailsViewModel: CountryDetailViewModel
-    
+
     var activeTab: Int
     
     @Published var countryDetails: CountryDetailModel
@@ -18,7 +17,6 @@ class MockCountryDetailTabViewModel: CountryDetailTabViewModelInterface {
         self.activeTab = activeTab
         self.countryDetails = country
         self.bookmarkManager = bookmarkManager
-        self.detailsViewModel = CountryDetailViewModel(country: country, countriesFetcher: CountriesAPIManager(), bookmarkManager: bookmarkManager)
     }
     
     func mapButtonTapped() { }

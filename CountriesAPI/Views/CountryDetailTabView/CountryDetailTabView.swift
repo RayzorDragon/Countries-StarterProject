@@ -18,9 +18,7 @@ struct CountryDetailTabView <Model>: View where Model: CountryDetailTabViewModel
         TabView(selection: $viewModel.activeTab) {
             NavigationStack {
                 CountryDetailView(
-                    viewModel: CountryDetailViewModel(
-                        country: viewModel.countryDetails,
-                        countriesFetcher: CountriesAPIManager(), bookmarkManager: viewModel.bookmarkManager))
+                    viewModel: viewModel)
             }
             .tabItem {
                 Text("Overview")

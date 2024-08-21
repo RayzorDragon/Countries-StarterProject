@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CountryDetailView <Model>: View where Model:CountryDetailViewModelInterface {
+struct CountryDetailView <Model>: View where Model:CountryDetailTabViewModelInterface {
     
     @StateObject private var viewModel: Model
     init (viewModel: Model) {
@@ -70,10 +70,10 @@ struct CountryDetailView <Model>: View where Model:CountryDetailViewModelInterfa
         }
         .onAppear {
             if viewModel.countryDetails.flags?.pngData == nil {
-                viewModel.downloadFlag(viewModel.countryDetails.flags ?? ImageSourceModel())
+                viewModel.detailsViewModel.downloadFlag(viewModel.countryDetails.flags ?? ImageSourceModel())
             }
             if viewModel.countryDetails.coatOfArms?.pngData == nil {
-                viewModel.downloadCoatOfArms(viewModel.countryDetails.coatOfArms ?? ImageSourceModel())
+                viewModel.detailsViewModel.downloadCoatOfArms(viewModel.countryDetails.coatOfArms ?? ImageSourceModel())
             }
             
                 
@@ -82,9 +82,9 @@ struct CountryDetailView <Model>: View where Model:CountryDetailViewModelInterfa
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             Button {
-                viewModel.saveButtonTapped()
+                viewModel.detailsViewModel.saveButtonTapped()
             } label: {
-                Image(systemName: viewModel.bookmarked ? "bookmark.fill" : "bookmark")
+                Image(systemName: viewModel.detailsViewModel.bookmarked ? "bookmark.fill" : "bookmark")
             }
 
         }
@@ -171,11 +171,11 @@ struct CountryDetailView <Model>: View where Model:CountryDetailViewModelInterfa
     }
     
     @ViewBuilder func languagesView() -> some View {
-        bubbledTextView(string1: "Language(s)", string2: viewModel.listLanguages())
+        bubbledTextView(string1: "Language(s)", string2: viewModel.detailsViewModel.listLanguages())
     }
     
     @ViewBuilder func currenciesView() -> some View {
-        bubbledTextView(string1: "Currencies", string2: viewModel.listCurrency())
+        bubbledTextView(string1: "Currencies", string2: viewModel.detailsViewModel.listCurrency())
     }
     
     @ViewBuilder func populationView() -> some View {
@@ -196,13 +196,13 @@ struct CountryDetailView <Model>: View where Model:CountryDetailViewModelInterfa
                     Text("Left")
                         .font(countryDetailGenericInfoFont())
                         .foregroundStyle(grayColorCountryDetailsInfo() )
-                        .opacity(viewModel.driveLeftSide() ? 1.0 : 0.3)
+                        .opacity(viewModel.detailsViewModel.driveLeftSide() ? 1.0 : 0.3)
                     Text(Image(systemName: "car.circle"))
                         .font(countryDetailGenericInfoFont())
                         .foregroundStyle(grayColorCountryDetailsTitle())
                     Text("Right")
                         .font(countryDetailGenericInfoFont())
-                        .foregroundStyle(grayColorCountryDetailsInfo()).opacity(viewModel.driveRightSide() ? 1.0 : 0.3)
+                        .foregroundStyle(grayColorCountryDetailsInfo()).opacity(viewModel.detailsViewModel.driveRightSide() ? 1.0 : 0.3)
                 }
                 Spacer()
             }
@@ -219,7 +219,7 @@ struct CountryDetailView <Model>: View where Model:CountryDetailViewModelInterfa
     }
     
     @ViewBuilder func timezoneView() -> some View {
-        bubbledTextView(string1: "Timezone(s)", string2: viewModel.listTimezones())
+        bubbledTextView(string1: "Timezone(s)", string2: viewModel.detailsViewModel.listTimezones())
     }
     
     @ViewBuilder func shrinkingTextView(string1: String, string2: String) -> some View {
@@ -311,5 +311,5 @@ struct CountryDetailView <Model>: View where Model:CountryDetailViewModelInterfa
 }
 
 #Preview {
-    CountryDetailView(viewModel: MockCountryDetailViewModel(country: mock_countryDetailModel_4, countriesFetcher: CountriesAPIManager(), bookmarkManager: BookmarkManager()))
+    CountryDetailView(viewModel: MockCountryDetailTabViewModel(country: mock_countryDetailModel_4, bookmarkManager: BookmarkManager()))
 }

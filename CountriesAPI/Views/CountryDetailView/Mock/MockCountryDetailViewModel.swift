@@ -22,6 +22,7 @@ class MockCountryDetailViewModel: CountryDetailViewModelInterface {
     func downloadFlag(_ sourceModel: ImageSourceModel) {}
     func downloadCoatOfArms(_ sourceModel: ImageSourceModel) {}
     func saveButtonTapped() { }
+    func mapButtonTapped() { }
     
     
 }

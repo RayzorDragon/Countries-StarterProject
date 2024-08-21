@@ -21,6 +21,7 @@ protocol CountryDetailViewModelInterface: ObservableObject {
     func driveRightSide() -> Bool
     func driveLeftSide() -> Bool
     func saveButtonTapped()
+    func mapButtonTapped()
 }
 
 extension CountryDetailViewModelInterface {
@@ -137,5 +138,9 @@ extension CountryDetailViewModel: CountryDetailViewModelInterface {
     func saveButtonTapped() {
         bookmarkManager.saveOrDeleteEntry(officalName: countryDetails.officialName())
         bookmarked = bookmarkManager.contains(officalName: countryDetails.officialName())
+    }
+    
+    func mapButtonTapped() {
+        print("Map Button Tapped")
     }
 }

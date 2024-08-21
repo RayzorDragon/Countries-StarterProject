@@ -22,6 +22,9 @@ struct CountryDetailView <Model>: View where Model:CountryDetailViewModelInterfa
                     HStack{
                         countryNameView()
                             .fixedSize()
+                            .onTapGesture {
+                                viewModel.mapButtonTapped()
+                            }
                         Spacer()
                         
                     }

@@ -31,7 +31,7 @@ struct CountryDetailTabView <Model>: View where Model: CountryDetailTabViewModel
             .tag(0)
             
             NavigationStack {
-                CountryDetailMapView(viewModel: CountryDetailMapViewModel(country: viewModel.countryDetails, locationManager: LocationManager()))
+                CountryDetailMapView(viewModel: CountryDetailMapViewModel(country: viewModel.countryDetails, locationService: LocationService()))
             }
             .tabItem {
                 Text("Map")

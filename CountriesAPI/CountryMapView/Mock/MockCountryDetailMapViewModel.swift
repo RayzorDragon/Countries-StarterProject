@@ -13,21 +13,21 @@ class MockCountryDetailMapViewModel: CountryDetailMapViewModelInterface {
     
     
     @Published var countryDetails: CountryDetailModel
-    @Published var locationManager: LocationManager
+    @Published var locationService: LocationService
     @Published var permissionDetermined: Bool
     @Published var permissionGranted: Bool
     @Published var localPosition: MapCameraPosition
     @Published var countryPosition: MapCameraPosition
     @Published var capitalPosition: MapCameraPosition
     
-    required init(country: CountryDetailModel, locationManager: LocationManager) {
+    required init(country: CountryDetailModel, locationService: LocationService) {
         self.countryDetails = country
-        self.locationManager = locationManager
+        self.locationService = locationService
         self.permissionDetermined = true
         self.permissionGranted = true
         self.localPosition = MapCameraPosition.region(
             MKCoordinateRegion(
-                center: locationManager.lastKnownLocation ?? CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),
+                center: locationService.lastKnownLocation ?? CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),
                 span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1)
             )
         )

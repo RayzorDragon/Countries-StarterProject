@@ -26,7 +26,9 @@ CountryDetailModel(
     coatOfArms: ImageSourceModel(
         png: "https://mainfacts.com/media/images/coats_of_arms/it.png"),
     area: 301336,
-timezones: ["UTC+01:00"])
+    timezones: ["UTC+01:00"],
+    capitalInfo: CapitalInfo(latlng: [41.9, 12.48]),
+    latlng: [42.83333333, 12.83333333])
 
 let mock_countryDetailModel_2 =
 CountryDetailModel(
@@ -49,7 +51,9 @@ CountryDetailModel(
     coatOfArms: ImageSourceModel(
         png: "https://mainfacts.com/media/images/coats_of_arms/lk.png"),
     area: 65610,
-    timezones: ["UTC+05:30"])
+    timezones: ["UTC+05:30"],
+    capitalInfo: CapitalInfo(latlng: [6.89, 79.9]),
+    latlng: [7, 81])
 
 let mock_countryDetailModel_3 =
 CountryDetailModel(
@@ -83,7 +87,9 @@ CountryDetailModel(
     coatOfArms: ImageSourceModel(
         png: "https://mainfacts.com/media/images/coats_of_arms/za.png"),
     area: 1221037,
-    timezones: ["UTC+02:00"])
+    timezones: ["UTC+02:00"],
+    capitalInfo: CapitalInfo(latlng: [-25.7, 28.22]),
+    latlng: [-29, 24])
 
 let mock_countryDetailModel_4 =
 CountryDetailModel(
@@ -105,7 +111,9 @@ CountryDetailModel(
     coatOfArms: ImageSourceModel(
         png: "https://mainfacts.com/media/images/coats_of_arms/us.png"),
     area: 9372610,
-    timezones: ["UTC-12:00", "UTC-11:00", "UTC-10:00", "UTC-09:00", "UTC-08:00", "UTC-07:00", "UTC-06:00", "UTC-05:00", "UTC-04:00", "UTC+10:00", "UTC+12:00"])
+    timezones: ["UTC-12:00", "UTC-11:00", "UTC-10:00", "UTC-09:00", "UTC-08:00", "UTC-07:00", "UTC-06:00", "UTC-05:00", "UTC-04:00", "UTC+10:00", "UTC+12:00"],
+    capitalInfo: CapitalInfo(latlng: [38.89, -77.05]),
+    latlng: [38, -97])
 
 let mock_countryDetailModel_5 =
 CountryDetailModel(
@@ -126,4 +134,6 @@ CountryDetailModel(
         side: "right"),
     coatOfArms: nil,
     area: 34.2,
-    timezones: ["UTC-11:00", "UTC-10:00", "UTC+12:00"])
+    timezones: ["UTC-11:00", "UTC-10:00", "UTC+12:00"],
+    capitalInfo: nil,
+    latlng: [19.3, 166.633333])

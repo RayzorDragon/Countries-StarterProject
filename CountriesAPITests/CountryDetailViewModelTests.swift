@@ -34,9 +34,6 @@ final class CountryDetailViewModelTests: XCTestCase {
         viewModel = nil
     }
     
-    
-    // 4 tests
-    
     // downloadFlag
     func testDownloadFlag() throws {
         let expectation = expectation(description: "Download Flag expectation")
@@ -150,5 +147,20 @@ final class CountryDetailViewModelTests: XCTestCase {
         let returnedValue2 = viewModel!.driveLeftSide()
         XCTAssertFalse(returnedValue2)
         
+    }
+    
+    func testMapTap() throws {
+        
+        let expectedData = 1
+        let unalteredData = 0
+        
+        let returnedUnalteredData = tabViewModel?.activeTab
+        
+        XCTAssertEqual(returnedUnalteredData, unalteredData)
+        
+        viewModel?.mapButtonTapped()
+        
+        let returnedAlteredData = tabViewModel?.activeTab
+        XCTAssertEqual(returnedAlteredData, expectedData)
     }
 }

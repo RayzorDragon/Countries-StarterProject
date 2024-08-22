@@ -72,5 +72,5 @@ struct CountryDetailMapView <Model>: View where Model: CountryDetailMapViewModel
 }
 
 #Preview {
-    CountryDetailMapView(viewModel: MockCountryDetailMapViewModel(country: mock_countryDetailModel_1, locationManager: LocationManager()))
+    CountryDetailMapView(viewModel: MockCountryDetailMapViewModel(country: mock_countryDetailModel_1, locationService: LocationService()))
 }

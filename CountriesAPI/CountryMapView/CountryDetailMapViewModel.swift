@@ -12,21 +12,21 @@ import _MapKit_SwiftUI
 
 protocol CountryDetailMapViewModelInterface: ObservableObject {
     var countryDetails: CountryDetailModel { get set }
-    var locationManager: LocationManager { get set }
+    var locationService: LocationService { get set }
     var permissionDetermined: Bool { get set }
     var permissionGranted: Bool { get set }
     var localPosition: MapCameraPosition { get set }
     var countryPosition: MapCameraPosition { get set }
     var capitalPosition: MapCameraPosition { get set }
     
-    init(country: CountryDetailModel, locationManager: LocationManager)
+    init(country: CountryDetailModel, locationService: LocationService)
     
     func startLocationManager()
 }
 
 class CountryDetailMapViewModel {
     @Published var countryDetails: CountryDetailModel
-    @Published var locationManager: LocationManager
+    @Published var locationService: LocationService
     @Published var permissionDetermined: Bool
     @Published var permissionGranted: Bool
     @Published var localPosition: MapCameraPosition
@@ -34,14 +34,14 @@ class CountryDetailMapViewModel {
     @Published var capitalPosition: MapCameraPosition
     private var disposables = Set<AnyCancellable>()
     
-    required init(country: CountryDetailModel, locationManager: LocationManager) {
+    required init(country: CountryDetailModel, locationService: LocationService) {
         self.countryDetails = country
-        self.locationManager = locationManager
+        self.locationService = locationService
         self.permissionGranted = false
         self.permissionDetermined = false
         self.localPosition = MapCameraPosition.region(
             MKCoordinateRegion(
-                center: locationManager.lastKnownLocation ?? CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),
+                center: locationService.lastKnownLocation ?? CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),
                 span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1)
             )
         )
@@ -58,7 +58,7 @@ class CountryDetailMapViewModel {
             )
         )
         
-        locationManager.$authorization
+        locationService.$authorization
             .compactMap { $0 }
             .sink  { (_) in
             } receiveValue: { [self] (authStatus) in
@@ -79,7 +79,7 @@ class CountryDetailMapViewModel {
                 }
             }.store(in: &disposables)
         
-        locationManager.$lastKnownLocation
+        locationService.$lastKnownLocation
             .compactMap { $0 }
             .sink { (_) in
             } receiveValue: { [self] (lastLocation) in
@@ -96,6 +96,6 @@ class CountryDetailMapViewModel {
 extension CountryDetailMapViewModel: CountryDetailMapViewModelInterface {
     
     func startLocationManager() {
-        locationManager.checkForLocationAuthorization()
+        locationService.checkForLocationAuthorization()
     }
 }

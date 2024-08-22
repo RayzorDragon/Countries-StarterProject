@@ -12,73 +12,62 @@ import CoreLocation
 struct CountryDetailMapView <Model>: View where Model: CountryDetailMapViewModelInterface {
     
     @StateObject private var viewModel: Model
-    @State private var localPosition: MapCameraPosition
-    @State private var countryPosition: MapCameraPosition
-    @State private var capitalPosition: MapCameraPosition
     
     init (viewModel: Model) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        localPosition = MapCameraPosition.region(
-            MKCoordinateRegion(
-                center: viewModel.locationManager.lastKnownLocation ?? CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),
-                span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1)
-            )
-        )
-        countryPosition = MapCameraPosition.region(
-            MKCoordinateRegion(
-                center: viewModel.countryDetails.countryLatLong() ?? CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),
-                span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1)
-            )
-        )
-        capitalPosition = MapCameraPosition.region(
-            MKCoordinateRegion(
-                center: viewModel.countryDetails.capitalLatLong() ?? CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),
-                span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-            )
-        )
         
         
     }
     var body: some View {
         ScrollView {
-            if true {
+            if viewModel.permissionDetermined == false {
                 EmptyView()
             } else {
-                if false {
+                if viewModel.permissionGranted {
                     localMapScreen()
                 }
                 countryMapScreen()
                 capitalMapScreen()
             }
         }
-        .background(Color.gray)
         .onAppear {
             viewModel.startLocationManager()
         }
     }
     
     @ViewBuilder func localMapScreen() -> some View {
-        VStack {
+        VStack(alignment: .leading, spacing: 0.0) {
             Text("Your Current Location")
-            Map(position: $localPosition, interactionModes: [])
+                .font(countryDetailGenericTitleFont())
+                .foregroundStyle(grayColorCountryDetailsTitle())
+            Map(position: $viewModel.localPosition, interactionModes: [])
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 2.0/3.0)
         }
     }
     
     @ViewBuilder func countryMapScreen() -> some View {
-        VStack {
-            Text("Country - \(viewModel.countryDetails.commonName())")
-            Map(position: $countryPosition, interactionModes: [])
+        VStack(alignment: .leading, spacing: 0.0) {
+            genericTextView(string1: "Country - ", string2: viewModel.countryDetails.commonName())
+            Map(position: $viewModel.countryPosition, interactionModes: [])
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 2.0/3.0)
         }
     }
     
     @ViewBuilder func capitalMapScreen() -> some View {
-        VStack {
-            Text("Capital - \(viewModel.countryDetails.firstCapital())")
-            Map(position: $capitalPosition, interactionModes: [])
+        VStack(alignment: .leading, spacing: 0.0) {
+            genericTextView(string1: "Capital - ", string2: viewModel.countryDetails.firstCapital())
+            Map(position: $viewModel.capitalPosition, interactionModes: [])
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 2.0/3.0)
         }
+    }
+    
+    @ViewBuilder func genericTextView(string1: String, string2: String) -> some View {
+            Text(string1)
+                .font(countryDetailGenericTitleFont())
+                .foregroundStyle(grayColorCountryDetailsTitle())
+            + Text(string2)
+                .font(countryDetailGenericInfoFont())
+                .foregroundStyle(grayColorCountryDetailsInfo())
     }
 }
 

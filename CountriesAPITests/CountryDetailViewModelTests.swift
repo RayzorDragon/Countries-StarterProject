@@ -14,13 +14,15 @@ final class CountryDetailViewModelTests: XCTestCase {
     var APIFetcher: MockCountriesAPIManager<[CountryDetailModel]>?
     var bookmarkManager: BookmarkManager?
     var viewModel: CountryDetailViewModel?
+    var tabViewModel: CountryDetailTabViewModel?
     private var disposables = Set<AnyCancellable>()
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         APIFetcher = MockCountriesAPIManager()
         bookmarkManager = BookmarkManager()
-        viewModel = CountryDetailViewModel(country: mock_countryDetailModel_3, countriesFetcher: APIFetcher!, bookmarkManager: bookmarkManager!)
+        tabViewModel = CountryDetailTabViewModel(country: mock_countryDetailModel_3, bookmarkManager: bookmarkManager!)
+        viewModel = CountryDetailViewModel(country: mock_countryDetailModel_3, countriesFetcher: APIFetcher!, bookmarkManager: bookmarkManager!, countryTabViewModel: tabViewModel!)
     }
     
     override func tearDownWithError() throws {
@@ -28,6 +30,7 @@ final class CountryDetailViewModelTests: XCTestCase {
         APIFetcher = nil
         bookmarkManager?.resetBookmarks()
         bookmarkManager = nil
+        tabViewModel = nil
         viewModel = nil
     }
     
@@ -84,7 +87,7 @@ final class CountryDetailViewModelTests: XCTestCase {
         XCTAssertFalse(returnedValue.isEmpty)
         
         // split returned values by expected seperator
-        let returnedArray = returnedValue.components(separatedBy: "\n")
+        let returnedArray = returnedValue.components(separatedBy: "\n•  ")
         
         // same counts
         XCTAssertEqual(returnedArray.count, expectedValue?.count)
@@ -129,7 +132,8 @@ final class CountryDetailViewModelTests: XCTestCase {
         let returnedValue1 = viewModel!.driveRightSide()
         XCTAssertFalse(returnedValue1)
         
-        viewModel = CountryDetailViewModel(country: mock_countryDetailModel_4, countriesFetcher: APIFetcher!, bookmarkManager: bookmarkManager!)
+        tabViewModel = CountryDetailTabViewModel(country: mock_countryDetailModel_4, bookmarkManager: bookmarkManager!)
+        viewModel = CountryDetailViewModel(country: mock_countryDetailModel_4, countriesFetcher: APIFetcher!, bookmarkManager: bookmarkManager!, countryTabViewModel: tabViewModel!)
         let returnedValue2 = viewModel!.driveRightSide()
         XCTAssertTrue(returnedValue2)
         
@@ -141,7 +145,8 @@ final class CountryDetailViewModelTests: XCTestCase {
         let returnedValue1 = viewModel!.driveLeftSide()
         XCTAssertTrue(returnedValue1)
         
-        viewModel = CountryDetailViewModel(country: mock_countryDetailModel_4, countriesFetcher: APIFetcher!, bookmarkManager: bookmarkManager!)
+        tabViewModel = CountryDetailTabViewModel(country: mock_countryDetailModel_4, bookmarkManager: bookmarkManager!)
+        viewModel = CountryDetailViewModel(country: mock_countryDetailModel_4, countriesFetcher: APIFetcher!, bookmarkManager: bookmarkManager!, countryTabViewModel: tabViewModel!)
         let returnedValue2 = viewModel!.driveLeftSide()
         XCTAssertFalse(returnedValue2)
         
